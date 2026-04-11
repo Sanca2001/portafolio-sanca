@@ -3,6 +3,8 @@ import React from "react"
 import Hero from "@/components/Hero";
 import CoderProfileCard from "@/components/CoderProfileCard";
 import Skills from "@/components/Skills";
+import Proyectos from "@/components/Protectos";
+
 
 // Main component
 const Portfolio = () => {
@@ -40,6 +42,13 @@ const Portfolio = () => {
 
         {/* Skills Section */}
         <Skills />
+
+        {/* Proyectos Section */}
+        <Proyectos />
+
+
+
+        
       </div>
     </div>
   );
