@@ -332,7 +332,7 @@ const VideoGallery: React.FC = () => {
   };
 
   return (
-    <section id="gallery" className="py-12 sm:py-16 md:py-20 bg-black min-h-screen relative overflow-hidden">
+    <section id="gallery" className="py-12 sm:py-16 md:py-20 min-h-screen relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
@@ -343,9 +343,9 @@ const VideoGallery: React.FC = () => {
         >
           <motion.h2
             variants={itemAnimation}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-white tracking-tight"
+            className="text-3xl sm:text-3xl md:text-3xl font-extrabold mb-4 text-black tracking-tight dark:text-white "
           >
-            Featured Videos
+            Proyectos Desarrollados
           </motion.h2>
           <motion.div
             variants={itemAnimation}
@@ -353,10 +353,10 @@ const VideoGallery: React.FC = () => {
           />
           <motion.p
             variants={itemAnimation}
-            className="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed"
+            className="text-black max-w-3xl mx-auto text-lg md:text-xl leading-relaxed dark:text-white"
           >
-            Explore a curated selection of cinematic projects showcasing storytelling and visual artistry.
-            <span className="block text-sm text-gray-400 mt-2">Press &quot;/&quot; to search or use arrow keys to navigate</span>
+            Sección donde presento proyectos desarrollados para empresas, clientes y también proyectos personales que reflejan mis habilidades.
+            {/* <span className="block text-sm text-gray-400 mt-2">Press &quot;/&quot; to search or use arrow keys to navigate</span> */}
           </motion.p>
         </motion.div>
 
@@ -378,7 +378,7 @@ const VideoGallery: React.FC = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Search size={20} />
-                  {!isSearchActive && <span>Search Projects</span>}
+                  {!isSearchActive && <span>Buscar Proyectos</span>}
                 </motion.button>
                 <AnimatePresence>
                   {isSearchActive && (
@@ -418,7 +418,9 @@ const VideoGallery: React.FC = () => {
               </div>
             </motion.div>
           </div>
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+
+          {/* BOTONES FILTROS */}
+          {/* <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             {categoryOptions.map((cat) => (
               <motion.button
                 key={cat}
@@ -435,7 +437,8 @@ const VideoGallery: React.FC = () => {
                 {cat.charAt(0).toUpperCase() + cat.slice(1)}
               </motion.button>
             ))}
-          </div>
+          </div> */}
+
         </motion.div>
 
         <motion.div
@@ -515,12 +518,12 @@ const VideoGallery: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center py-12"
           >
-            <p className="text-gray-400 text-lg">No projects found matching your criteria.</p>
+            <p className="text-gray-400 text-lg">No hay proyectos encontrados de esa categoria.</p>
             <button
               onClick={() => { setCategory('all'); setSearchTerm(''); }}
               className="mt-4 px-6 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors"
             >
-              Clear Filters
+              Limpiar Filtros
             </button>
           </motion.div>
         )}

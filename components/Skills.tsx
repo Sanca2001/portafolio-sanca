@@ -381,7 +381,7 @@ function Skills() {
 
   return (
     <div className="mt-20 flex flex-col items-center gap-8 overflow-hidden">
-      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+      <h2 className="text-3xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
         Tecnologías y herramientas
       </h2>
       <div className="w-full max-w-6xl flex flex-col gap-y-6">

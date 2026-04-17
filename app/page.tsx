@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import CoderProfileCard from "@/components/CoderProfileCard";
 import Skills from "@/components/Skills";
 import Proyectos from "@/components/Protectos";
+import Experiencia from "@/components/Experiencia";
 
 
 // Main component
@@ -45,6 +46,9 @@ const Portfolio = () => {
 
         {/* Proyectos Section */}
         <Proyectos />
+
+        {/* Experiencia Section */}
+        <Experiencia />
 
 
 
