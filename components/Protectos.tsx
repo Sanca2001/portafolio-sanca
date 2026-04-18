@@ -495,6 +495,7 @@ const VideoGallery: React.FC = () => {
                   >
                     {isFullscreen ? <Minimize size={16} /> : <Expand size={16} />}
                   </button>
+                  
                   <button
                     onClick={closeProject}
                     className="w-10 h-10 rounded bg-gray-800/80 flex items-center justify-center text-white hover:bg-gray-500 transition-colors duration-300"
