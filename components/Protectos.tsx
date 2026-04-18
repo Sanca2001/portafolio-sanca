@@ -2,14 +2,13 @@
 
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence, useInView, Variants, Transition } from 'framer-motion';
-import { Play, X, ChevronLeft, ChevronRight, Expand, Minimize, Share2, Search, XCircle } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Expand, Minimize, Share2, Search, XCircle } from 'lucide-react';
 
 interface Project {
   id: number;
   title: string;
   category: string;
   thumbnailUrl: string;
-  videoUrl: string;
   description: string;
   client: string;
   director: string;
@@ -52,84 +51,41 @@ const categories: Category[] = [
 const projects: Project[] = [
   {
     id: 1,
-    title: "Cinematic Journey",
-    category: "film",
-    thumbnailUrl: "https://img.freepik.com/premium-photo/professional-cinema-camera-recording-commercial-studio_237404-9535.jpg",
-    videoUrl: "https://www.youtube.com/embed/EngW7tLk6R8?si=JqVwUbeK03kWJPcE",
-    description: "A breathtaking visual narrative exploring the depths of human emotion through stunning cinematography and compelling storytelling.",
-    client: "Independent Film",
+    title: " Sistema de Inventarios ",
+    category: "Inventarios",
+    thumbnailUrl: "/images/projects/proyecto_1.jfif",
+    description: " Sistema de inventarios para la empresa Mobile Phones Servicios Generales, en donde Diseñe y desarrolle un sistema de inventarios para el control, registro de productos y movimientos de stock ",
+    client: "Mobile Phones Servicios Generales",
     director: "Alex Rodriguez",
     year: "2024",
-    location: "Los Angeles, CA",
-    camera: "RED Komodo 6K",
+    location: "Lima, Perú",
+    camera: "HTML5, CSS3, JavaScript, MySQL WorkBeanch, Xampp, Laravel - PHP, Blade, Bootstrap",
     lenses: "Zeiss Supreme Primes",
     format: "6K RAW",
     aspectRatio: "2.39:1"
   },
   {
     id: 2,
-    title: "Brand Vision",
-    category: "commercial",
-    thumbnailUrl: "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?w=800&h=600&fit=crop",
-    videoUrl: "https://www.youtube.com/embed/D0UnqGm_miA?si=0f0PwzfJNJ-CWQpq",
-    description: "A dynamic commercial piece that captures the essence of modern lifestyle and brand identity.",
-    client: "TechCorp Inc.",
+    title: "Aplicación de Inventarios",
+    category: "Inventarios",
+    thumbnailUrl: "/images/projects/proyecto_2.jfif",
+    description: " Como parte de un proyecto personal implemente una aplicación móvil low code utilizando AppShet para la gestión de inventarios de equipos de TI ",
+    client: " Quimpac S.A ",
     director: "Sarah Chen",
-    year: "2024",
-    location: "New York, NY",
-    camera: "Sony FX9",
-    lenses: "Sony G Master",
+    year: "2025",
+    location: "Huacho, Perú",
+    camera: "AppShet - Low Code",
+    lenses: "AppShet",
     format: "4K XAVC",
     aspectRatio: "16:9"
   },
-  {
-    id: 3,
-    title: "Documentary Truth",
-    category: "documentary",
-    thumbnailUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&h=600&fit=crop",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    description: "An intimate documentary exploring real stories and authentic human experiences.",
-    client: "National Geographic",
-    director: "Michael Torres",
-    year: "2023",
-    location: "Various",
-    camera: "Canon EOS C300 Mark III",
-    lenses: "Canon CN-E Primes",
-    format: "4K Cinema RAW",
-    aspectRatio: "16:9"
-  },
-  {
-    id: 4,
-    title: "Musical Harmony",
-    category: "music",
-    thumbnailUrl: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
-    videoUrl: "https://www.youtube.com/embed/u_sIfs7Yom4?si=MOYOivOMl5mAc-wk",
-    description: "A vibrant music video that blends visual artistry with rhythmic storytelling.",
-    client: "Universal Music",
-    director: "Emma Johnson",
-    year: "2024",
-    location: "Nashville, TN",
-    camera: "ARRI Alexa Mini LF",
-    lenses: "ARRI Signature Primes",
-    format: "4.5K ProRes",
-    aspectRatio: "2.35:1"
-  },
-  {
-    id: 5,
-    title: 'Tuscany Wedding Trailer | Emma & James',
-    category: 'wedding',
-    thumbnailUrl: 'https://i.ytimg.com/vi/fjFB3B16cAo/hq720.jpg',
-    videoUrl: 'https://www.youtube.com/embed/rkpzYNB6xks?si=0ukSpD6me3CYdRiY',
-    description: 'A cinematic trailer of Emma and James’s wedding in the Tuscan hills—pure romance, festivity, and family love.',
-    client: 'Emma & James',
-    director: 'Willow Tree Films',
-    year: '2022',
-    location: 'Tuscany, Italy',
-    camera: 'Sony FX3 + DJI Ronin',
-    lenses: 'Sigma 35mm, Sony 85mm',
-    format: '4K',
-    aspectRatio: '2.35:1',
-  },
+
+
+
+
+  
+
+
 ];
 
 const useScrollAnimation = () => {
@@ -161,7 +117,6 @@ const useScrollAnimation = () => {
 
 const VideoGallery: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [category, setCategory] = useState<string>('all');
   const [imageError, setImageError] = useState<{ [key: number]: boolean }>({});
   const [currentProjectIndex, setCurrentProjectIndex] = useState<number>(0);
@@ -181,7 +136,7 @@ const VideoGallery: React.FC = () => {
     return projects.filter(project => {
       const matchesCategory = category === 'all' || project.category === category;
       const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           project.description.toLowerCase().includes(searchTerm.toLowerCase());
+        project.description.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesCategory && matchesSearch;
     });
   }, [category, searchTerm]);
@@ -190,13 +145,11 @@ const VideoGallery: React.FC = () => {
     const projectIndex = filteredProjects.findIndex(p => p.id === project.id);
     setCurrentProjectIndex(projectIndex);
     setSelectedProject(project);
-    setIsPlaying(false);
     document.body.style.overflow = 'hidden';
   }, [filteredProjects]);
 
   const closeProject = useCallback(() => {
     setSelectedProject(null);
-    setIsPlaying(false);
     setIsFullscreen(false);
     document.body.style.overflow = 'auto';
   }, []);
@@ -208,13 +161,8 @@ const VideoGallery: React.FC = () => {
 
     setCurrentProjectIndex(newIndex);
     setSelectedProject(filteredProjects[newIndex]);
-    setIsPlaying(false);
   }, [currentProjectIndex, filteredProjects]);
 
-  const handlePlayClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsPlaying(true);
-  };
 
   const toggleFullscreen = useCallback(() => {
     setIsFullscreen(prev => !prev);
@@ -234,15 +182,6 @@ const VideoGallery: React.FC = () => {
     }
   }, [selectedProject]);
 
-  const getEmbedUrl = (url: string): string => {
-    if (!url) return '';
-    if (url.includes('youtube')) {
-      return url + '?autoplay=1&rel=0';
-    } else if (url.includes('vimeo')) {
-      return url + '?autoplay=1';
-    }
-    return url;
-  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -266,12 +205,6 @@ const VideoGallery: React.FC = () => {
           e.preventDefault();
           navigateProject('next');
           break;
-        case ' ':
-          e.preventDefault();
-          if (!isPlaying) {
-            setIsPlaying(true);
-          }
-          break;
         case 'f':
         case 'F':
           e.preventDefault();
@@ -287,7 +220,7 @@ const VideoGallery: React.FC = () => {
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [selectedProject, isPlaying, navigateProject, closeProject, handleShare, toggleFullscreen, isSearchActive]);
+  }, [selectedProject, navigateProject, closeProject, handleShare, toggleFullscreen, isSearchActive]);
 
   const handleImageError = (id: number) => {
     setImageError(prev => ({ ...prev, [id]: true }));
@@ -371,9 +304,8 @@ const VideoGallery: React.FC = () => {
               <div className="relative flex items-center">
                 <motion.button
                   onClick={toggleSearch}
-                  className={`flex items-center gap-2 px-4 py-2 bg-black border border-gray-600 rounded text-gray-300 hover:bg-gray-800 transition-all duration-300 ${
-                    isSearchActive ? 'w-full' : 'w-auto'
-                  }`}
+                  className={`flex items-center gap-2 px-4 py-2 bg-black border border-gray-600 rounded text-gray-300 hover:bg-gray-800 transition-all duration-300 ${isSearchActive ? 'w-full' : 'w-auto'
+                    }`}
                   whileHover={buttonHoverAnimation}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -446,7 +378,7 @@ const VideoGallery: React.FC = () => {
           variants={containerAnimation}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-3 gap-6 sm:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xxl:grid-cols-3 gap-6 sm:gap-8"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
@@ -498,10 +430,9 @@ const VideoGallery: React.FC = () => {
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
                   >
-                    <div className="w-12 h-12 rounded bg-white flex items-center justify-center">
-                      <Play className="text-black ml-1" size={16} />
+                    <div className="px-4 py-2 rounded bg-white flex items-center justify-center">
+                      <span className="text-black text-sm font-bold uppercase tracking-wider">Ver Detalles</span>
                     </div>
-                    <span className="text-white text-sm font-medium">View Project</span>
                   </motion.div>
                 </div>
                 <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 rounded text-xs text-gray-300 uppercase tracking-wider font-semibold">
@@ -540,9 +471,8 @@ const VideoGallery: React.FC = () => {
           >
             <motion.div
               ref={modalRef}
-              className={`relative bg-black w-full overflow-y-auto rounded shadow border border-gray-800 ${
-                isFullscreen ? 'max-w-none max-h-none h-full rounded-none' : 'max-w-6xl max-h-[90vh]'
-              }`}
+              className={`relative bg-black w-full overflow-y-auto rounded shadow border border-gray-800 ${isFullscreen ? 'max-w-none max-h-none h-full rounded-none' : 'max-w-6xl max-h-[90vh]'
+                }`}
               initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
@@ -601,35 +531,11 @@ const VideoGallery: React.FC = () => {
               )}
 
               <div className={`relative bg-black ${isFullscreen ? 'h-full' : 'aspect-video'}`}>
-                {isPlaying ? (
-                  <iframe
-                    src={getEmbedUrl(selectedProject.videoUrl)}
-                    className="w-full h-full"
-                    title={selectedProject.title}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                ) : (
-                  <>
-                    <img
-                      src={selectedProject.thumbnailUrl}
-                      alt={selectedProject.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.button
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded bg-white flex items-center justify-center"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        onClick={handlePlayClick}
-                        title="Play (Space)"
-                      >
-                        <Play className="text-black ml-1" size={24} />
-                      </motion.button>
-                    </div>
-                  </>
-                )}
+                <img
+                  src={selectedProject.thumbnailUrl}
+                  alt={selectedProject.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {!isFullscreen && (
@@ -650,21 +556,21 @@ const VideoGallery: React.FC = () => {
                   </p>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-white font-semibold mb-4 text-lg">Project Details</h3>
+                      <h3 className="text-white font-semibold mb-4 text-lg"> Detalles del Proyecto </h3>
                       <ul className="text-gray-200 space-y-3">
-                        <li><span className="font-semibold">Client:</span> {selectedProject.client}</li>
-                        <li><span className="font-semibold">Director:</span> {selectedProject.director}</li>
-                        <li><span className="font-semibold">Year:</span> {selectedProject.year}</li>
-                        <li><span className="font-semibold">Location:</span> {selectedProject.location}</li>
+                        <li><span className="font-semibold">Cliente:</span> {selectedProject.client}</li>
+                        {/* <li><span className="font-semibold">Director:</span> {selectedProject.director}</li> */}
+                        <li><span className="font-semibold">Año:</span> {selectedProject.year}</li>
+                        <li><span className="font-semibold">Ubicación:</span> {selectedProject.location}</li>
                       </ul>
                     </div>
                     <div>
-                      <h3 className="text-white font-semibold mb-4 text-lg">Technical Specs</h3>
+                      <h3 className="text-white font-semibold mb-4 text-lg">Stack Tecnológico</h3>
                       <ul className="text-gray-200 space-y-3">
-                        <li><span className="font-semibold">Camera:</span> {selectedProject.camera}</li>
-                        <li><span className="font-semibold">Lenses:</span> {selectedProject.lenses}</li>
+                        <li><span className="font-semibold"> Tecnologías :</span> {selectedProject.camera}</li>
+                        {/* <li><span className="font-semibold">Lenses:</span> {selectedProject.lenses}</li>
                         <li><span className="font-semibold">Format:</span> {selectedProject.format}</li>
-                        <li><span className="font-semibold">Aspect Ratio:</span> {selectedProject.aspectRatio}</li>
+                        <li><span className="font-semibold">Aspect Ratio:</span> {selectedProject.aspectRatio}</li> */}
                       </ul>
                     </div>
                   </div>
