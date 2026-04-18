@@ -487,13 +487,7 @@ const VideoGallery: React.FC = () => {
                   <span className="text-gray-400 text-sm">Use ← → to navigate</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <button
-                    onClick={handleShare}
-                    className="w-10 h-10 rounded bg-gray-800/80 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
-                    title="Share (S)"
-                  >
-                    <Share2 size={16} />
-                  </button>
+              
                   <button
                     onClick={toggleFullscreen}
                     className="w-10 h-10 rounded bg-gray-800/80 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
