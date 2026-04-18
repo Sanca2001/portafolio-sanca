@@ -33,7 +33,7 @@ const Hero = () => {
         <a target="_blank" href="https://www.linkedin.com/in/enrique-sanca/"   className="px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95">
           Saber más
         </a>
-        <a target="_blank"  href="https://drive.google.com/file/d/1UclKf_FE52aWuvkHUUR0x0Mwnwx2ZYoC/view?usp=sharing"  className="px-6 py-3 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95">
+        <a target="_blank"  href="https://drive.google.com/file/d/1wP5rDOfn_pyY_ckvi9Yqh5MgJiVZkRY1/view?usp=sharing"  className="px-6 py-3 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95">
           Descargar currículum
         </a>
       </div>
