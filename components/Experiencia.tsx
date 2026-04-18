@@ -60,7 +60,7 @@ const timelineData: TimelineItemData[] = [
             "Diseñe e implemente un módulo de generación automática de reportes Expediting, integrando datos SAP con plantillas corporativas para su distribución automatizada.",
             "Participe en levantamiento de requerimientos funcionales con usuarios finales para identificar procesos susceptibles de automatización y traducirlos en soluciones técnicas."
         ],
-        skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "GraphQL"],
+        skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Python", "Azure", "Node.JS", "JavaScript", "SQL Server"],
     },
 
     {
@@ -76,7 +76,7 @@ const timelineData: TimelineItemData[] = [
             "Seguimiento del programa de producción diario"
 
         ],
-        skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "GraphQL"],
+        skills: ["💻 Herramientas y Software", "🧠 Habilidades Analíticas", "📊 Control y Reportes"],
     },
 
     {
@@ -95,7 +95,10 @@ const timelineData: TimelineItemData[] = [
             "Coordine con proveedores para la resolución de solicitudes.",
             "Desarrolle una aplicación móvil para el registro y control de inventarios de equipos de TI."
         ],
-        skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "GraphQL"],
+        skills: ["💻 Soporte Técnico y Help Desk", "⚙️ Mantenimiento y Reparación de Hardware", "⚙️ Instalación y Configuración de Software",
+            "🌐 Soporte de Redes y Conectividad", "👥 Capacitación y Soporte a Usuarios", "🗄️ Gestión de Inventario de TI",
+            "🤝 Coordinación con Proveedores", "📱 Desarrollo de Aplicaciones Móviles"
+        ],
     },
 
     {
@@ -110,7 +113,9 @@ const timelineData: TimelineItemData[] = [
             "Diseñé páginas web para empresas, landing pages y blogs",
             "Participé activamente en cursos de capacitación en diseño UX"
         ],
-        skills: ["Creativity", "UI/UX Design", "Figma"],
+        skills: ["Creativity", "UI/UX Design", "Figma", "📱 Diseño Web", "🔍 Investigación UX", "🧩 Prototipado y Diseño",
+            "📚 Formación y Mejora Continua"
+        ],
     },
 
     {
@@ -128,7 +133,10 @@ const timelineData: TimelineItemData[] = [
             "Capacité a los usuarios en herramientas digitales.",
 
         ],
-        skills: ["HTML", "CSS", "JAVASCRIPT", "REDES", "SOPORTE TECNICO", "OFIMATICA"],
+        skills: ["💻 Soporte Técnico", "⚙️ Sistemas y Software", "🧰 Herramientas de Oficina (Ofimática)", "🌐 Web / Tecnología Digital",
+            "👥 Habilidades de Usuario (Soft Skills técnicas)"
+
+        ],
     },
 ];
 
