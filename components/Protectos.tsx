@@ -9,6 +9,7 @@ interface Project {
   title: string;
   category: string;
   thumbnailUrl: string;
+  gallery?: string[]; // Nueva propiedad para la galería
   description: string;
   client: string;
   director: string;
@@ -54,6 +55,7 @@ const projects: Project[] = [
     title: " Sistema de Inventarios ",
     category: "Inventarios",
     thumbnailUrl: "/images/projects/proyecto_1.jfif",
+    gallery: ["/images/projects/proyecto_1.jfif"], // Agregado galería inicial
     description: " Sistema de inventarios para la empresa Mobile Phones Servicios Generales, en donde Diseñe y desarrolle un sistema de inventarios para el control, registro de productos y movimientos de stock ",
     client: "Mobile Phones Servicios Generales",
     director: "Alex Rodriguez",
@@ -69,6 +71,7 @@ const projects: Project[] = [
     title: "Aplicación de Inventarios",
     category: "Inventarios",
     thumbnailUrl: "/images/projects/proyecto_2.jfif",
+    gallery: ["/images/projects/proyecto_2.jfif", "/images/projects/proyecto_2_1.png"], // Agregado galería inicial
     description: " Como parte de un proyecto personal implemente una aplicación móvil low code utilizando AppShet para la gestión de inventarios de equipos de TI ",
     client: " Quimpac S.A ",
     director: "Sarah Chen",
@@ -79,13 +82,6 @@ const projects: Project[] = [
     format: "4K XAVC",
     aspectRatio: "16:9"
   },
-
-
-
-
-  
-
-
 ];
 
 const useScrollAnimation = () => {
@@ -120,6 +116,7 @@ const VideoGallery: React.FC = () => {
   const [category, setCategory] = useState<string>('all');
   const [imageError, setImageError] = useState<{ [key: number]: boolean }>({});
   const [currentProjectIndex, setCurrentProjectIndex] = useState<number>(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
@@ -145,6 +142,7 @@ const VideoGallery: React.FC = () => {
     const projectIndex = filteredProjects.findIndex(p => p.id === project.id);
     setCurrentProjectIndex(projectIndex);
     setSelectedProject(project);
+    setCurrentImageIndex(0);
     document.body.style.overflow = 'hidden';
   }, [filteredProjects]);
 
@@ -161,6 +159,7 @@ const VideoGallery: React.FC = () => {
 
     setCurrentProjectIndex(newIndex);
     setSelectedProject(filteredProjects[newIndex]);
+    setCurrentImageIndex(0);
   }, [currentProjectIndex, filteredProjects]);
 
 
@@ -199,11 +198,15 @@ const VideoGallery: React.FC = () => {
           break;
         case 'ArrowLeft':
           e.preventDefault();
-          navigateProject('prev');
+          if (selectedProject?.gallery && selectedProject.gallery.length > 1) {
+            setCurrentImageIndex(prev => (prev - 1 + selectedProject.gallery!.length) % selectedProject.gallery!.length);
+          }
           break;
         case 'ArrowRight':
           e.preventDefault();
-          navigateProject('next');
+          if (selectedProject?.gallery && selectedProject.gallery.length > 1) {
+            setCurrentImageIndex(prev => (prev + 1) % selectedProject.gallery!.length);
+          }
           break;
         case 'f':
         case 'F':
@@ -481,10 +484,7 @@ const VideoGallery: React.FC = () => {
             >
               <div className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center p-4 bg-gradient-to-b from-black/80 to-transparent">
                 <div className="flex items-center space-x-4">
-                  <span className="text-white text-sm">
-                    {currentProjectIndex + 1} / {filteredProjects.length}
-                  </span>
-                  <span className="text-gray-400 text-sm">Use ← → to navigate</span>
+                  <span className="text-gray-400 text-sm">Use ← → to navigate gallery</span>
                 </div>
                 <div className="flex items-center space-x-2">
               
@@ -506,32 +506,70 @@ const VideoGallery: React.FC = () => {
                 </div>
               </div>
 
-              {filteredProjects.length > 1 && (
-                <>
-                  <button
-                    onClick={() => navigateProject('prev')}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded bg-black/60 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
-                    title="Previous (←)"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    onClick={() => navigateProject('next')}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded bg-black/60 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
-                    title="Next (→)"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </>
-              )}
 
-              <div className={`relative bg-black ${isFullscreen ? 'h-full' : 'aspect-video'}`}>
+              <div className={`relative bg-black group/gallery ${isFullscreen ? 'h-full' : 'aspect-video'}`}>
                 <img
-                  src={selectedProject.thumbnailUrl}
+                  src={selectedProject.gallery && selectedProject.gallery.length > 0
+                    ? selectedProject.gallery[currentImageIndex]
+                    : selectedProject.thumbnailUrl}
                   alt={selectedProject.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
+
+                {/* Controles de la galería interna */}
+                {selectedProject.gallery && selectedProject.gallery.length > 1 && (
+                  <>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImageIndex(prev => (prev - 1 + selectedProject.gallery!.length) % selectedProject.gallery!.length);
+                      }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-white opacity-0 group-hover/gallery:opacity-100 transition-opacity hover:bg-white hover:text-black"
+                    >
+                      <ChevronLeft size={18} />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setCurrentImageIndex(prev => (prev + 1) % selectedProject.gallery!.length);
+                      }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-white opacity-0 group-hover/gallery:opacity-100 transition-opacity hover:bg-white hover:text-black"
+                    >
+                      <ChevronRight size={18} />
+                    </button>
+
+                    {/* Indicador de posición de la galería */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
+                      {selectedProject.gallery.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentImageIndex(idx);
+                          }}
+                          className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIndex ? 'bg-white w-4' : 'bg-white/40'}`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
+
+              {/* Tira de Miniaturas (Thumbnails) */}
+              {selectedProject.gallery && selectedProject.gallery.length > 1 && !isFullscreen && (
+                <div className="px-6 py-4 bg-zinc-950 border-b border-gray-800 flex justify-center space-x-4 overflow-x-auto">
+                  {selectedProject.gallery.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImageIndex(idx)}
+                      className={`relative flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${idx === currentImageIndex ? 'border-white scale-110' : 'border-transparent opacity-50 hover:opacity-100'
+                        }`}
+                    >
+                      <img src={img} alt={`Thumb ${idx}`} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
 
               {!isFullscreen && (
                 <motion.div
