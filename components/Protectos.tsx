@@ -1,8 +1,23 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence, useInView, Variants, Transition } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Expand, Minimize, Share2, Search, XCircle } from 'lucide-react';
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useInView,
+  Variants,
+  Transition,
+} from "framer-motion";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Expand,
+  Minimize,
+  Share2,
+  Search,
+  XCircle,
+} from "lucide-react";
 
 interface Project {
   id: number;
@@ -43,10 +58,10 @@ interface AnimationVariants extends Variants {
 }
 
 const categories: Category[] = [
-  { id: 1, name: 'Documentary' },
-  { id: 2, name: 'Wedding' },
-  { id: 3, name: 'Travel' },
-  { id: 4, name: 'Film' },
+  { id: 1, name: "Documentary" },
+  { id: 2, name: "Wedding" },
+  { id: 3, name: "Travel" },
+  { id: 4, name: "Film" },
 ];
 
 const projects: Project[] = [
@@ -56,23 +71,29 @@ const projects: Project[] = [
     category: "Inventarios",
     thumbnailUrl: "/images/projects/proyecto_1.jfif",
     gallery: ["/images/projects/proyecto_1.jfif"], // Agregado galería inicial
-    description: " Sistema de inventarios para la empresa Mobile Phones Servicios Generales, en donde Diseñe y desarrolle un sistema de inventarios para el control, registro de productos y movimientos de stock ",
+    description:
+      " Sistema de inventarios para la empresa Mobile Phones Servicios Generales, en donde Diseñe y desarrolle un sistema de inventarios para el control, registro de productos y movimientos de stock ",
     client: "Mobile Phones Servicios Generales",
     director: "Alex Rodriguez",
     year: "2024",
     location: "Lima, Perú",
-    camera: "HTML5, CSS3, JavaScript, MySQL WorkBeanch, Xampp, Laravel - PHP, Blade, Bootstrap",
+    camera:
+      "HTML5, CSS3, JavaScript, MySQL WorkBeanch, Xampp, Laravel - PHP, Blade, Bootstrap",
     lenses: "Zeiss Supreme Primes",
     format: "6K RAW",
-    aspectRatio: "2.39:1"
+    aspectRatio: "2.39:1",
   },
   {
     id: 2,
     title: "Aplicación de Inventarios",
     category: "Inventarios",
     thumbnailUrl: "/images/projects/proyecto_2.jfif",
-    gallery: ["/images/projects/proyecto_2.jfif", "/images/projects/proyecto_2_1.png"], // Agregado galería inicial
-    description: " Como parte de un proyecto personal implemente una aplicación móvil low code utilizando AppShet para la gestión de inventarios de equipos de TI ",
+    gallery: [
+      "/images/projects/proyecto_2.jfif",
+      "/images/projects/proyecto_2_1.png",
+    ], // Agregado galería inicial
+    description:
+      " Como parte de un proyecto personal implemente una aplicación móvil low code utilizando AppShet para la gestión de inventarios de equipos de TI ",
     client: " Quimpac S.A ",
     director: "Sarah Chen",
     year: "2025",
@@ -80,7 +101,30 @@ const projects: Project[] = [
     camera: "AppShet - Low Code",
     lenses: "AppShet",
     format: "4K XAVC",
-    aspectRatio: "16:9"
+    aspectRatio: "16:9",
+  },
+
+  {
+    id: 3,
+    title: "Aplicación Gestión de Expediting y Correos",
+    category: "Gestión",
+    thumbnailUrl: "/images/projects/proyecto_3.jpg",
+    gallery: [
+      "/images/projects/proyecto_3.jpg",
+      "/images/projects/proyecto_3_4.jpg",
+      "/images/projects/proyecto_3_3.jpg",
+      "/images/projects/proyecto_3_1.jpg",
+      "/images/projects/proyecto_3_2.jpg",
+    ], // Agregado galería inicial
+    description: " Solución de aplicaci{on de escritorio, para optimizar los procesos de seguimiento (expediting), y envio de correos ",
+    client: " Tecsis Ingenieria S.A. ",
+    director: "Sarah Chen",
+    year: "2026",
+    location: "Lima, Perú",
+    camera: "Python, CustomTkinter, Excel, Pandas, Numpy, openpyxl, msal",
+    lenses: "AppShet",
+    format: "4K XAVC",
+    aspectRatio: "16:9",
   },
 ];
 
@@ -103,7 +147,7 @@ const useScrollAnimation = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut' as const,
+        ease: "easeOut" as const,
       },
     },
   };
@@ -113,12 +157,12 @@ const useScrollAnimation = () => {
 
 const VideoGallery: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [category, setCategory] = useState<string>('all');
+  const [category, setCategory] = useState<string>("all");
   const [imageError, setImageError] = useState<{ [key: number]: boolean }>({});
   const [currentProjectIndex, setCurrentProjectIndex] = useState<number>(0);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -127,44 +171,58 @@ const VideoGallery: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const { containerAnimation, itemAnimation } = useScrollAnimation();
 
-  const categoryOptions = ['all', ...categories.map(cat => cat.name.toLowerCase())];
+  const categoryOptions = [
+    "all",
+    ...categories.map((cat) => cat.name.toLowerCase()),
+  ];
 
   const filteredProjects = useMemo(() => {
-    return projects.filter(project => {
-      const matchesCategory = category === 'all' || project.category === category;
-      const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    return projects.filter((project) => {
+      const matchesCategory =
+        category === "all" || project.category === category;
+      const matchesSearch =
+        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.description.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesCategory && matchesSearch;
     });
   }, [category, searchTerm]);
 
-  const openProject = useCallback((project: Project) => {
-    const projectIndex = filteredProjects.findIndex(p => p.id === project.id);
-    setCurrentProjectIndex(projectIndex);
-    setSelectedProject(project);
-    setCurrentImageIndex(0);
-    document.body.style.overflow = 'hidden';
-  }, [filteredProjects]);
+  const openProject = useCallback(
+    (project: Project) => {
+      const projectIndex = filteredProjects.findIndex(
+        (p) => p.id === project.id,
+      );
+      setCurrentProjectIndex(projectIndex);
+      setSelectedProject(project);
+      setCurrentImageIndex(0);
+      document.body.style.overflow = "hidden";
+    },
+    [filteredProjects],
+  );
 
   const closeProject = useCallback(() => {
     setSelectedProject(null);
     setIsFullscreen(false);
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
   }, []);
 
-  const navigateProject = useCallback((direction: 'next' | 'prev') => {
-    const newIndex = direction === 'next'
-      ? (currentProjectIndex + 1) % filteredProjects.length
-      : (currentProjectIndex - 1 + filteredProjects.length) % filteredProjects.length;
+  const navigateProject = useCallback(
+    (direction: "next" | "prev") => {
+      const newIndex =
+        direction === "next"
+          ? (currentProjectIndex + 1) % filteredProjects.length
+          : (currentProjectIndex - 1 + filteredProjects.length) %
+            filteredProjects.length;
 
-    setCurrentProjectIndex(newIndex);
-    setSelectedProject(filteredProjects[newIndex]);
-    setCurrentImageIndex(0);
-  }, [currentProjectIndex, filteredProjects]);
-
+      setCurrentProjectIndex(newIndex);
+      setSelectedProject(filteredProjects[newIndex]);
+      setCurrentImageIndex(0);
+    },
+    [currentProjectIndex, filteredProjects],
+  );
 
   const toggleFullscreen = useCallback(() => {
-    setIsFullscreen(prev => !prev);
+    setIsFullscreen((prev) => !prev);
   }, []);
 
   const handleShare = useCallback(async () => {
@@ -173,7 +231,7 @@ const VideoGallery: React.FC = () => {
         await navigator.share({
           title: selectedProject.title,
           text: selectedProject.description,
-          url: window.location.href
+          url: window.location.href,
         });
       } catch {
         navigator.clipboard.writeText(window.location.href);
@@ -181,11 +239,10 @@ const VideoGallery: React.FC = () => {
     }
   }, [selectedProject]);
 
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!selectedProject) {
-        if (e.key === '/' && !isSearchActive) {
+        if (e.key === "/" && !isSearchActive) {
           e.preventDefault();
           setIsSearchActive(true);
           setTimeout(() => searchInputRef.current?.focus(), 100);
@@ -193,40 +250,53 @@ const VideoGallery: React.FC = () => {
         return;
       }
       switch (e.key) {
-        case 'Escape':
+        case "Escape":
           closeProject();
           break;
-        case 'ArrowLeft':
+        case "ArrowLeft":
           e.preventDefault();
           if (selectedProject?.gallery && selectedProject.gallery.length > 1) {
-            setCurrentImageIndex(prev => (prev - 1 + selectedProject.gallery!.length) % selectedProject.gallery!.length);
+            setCurrentImageIndex(
+              (prev) =>
+                (prev - 1 + selectedProject.gallery!.length) %
+                selectedProject.gallery!.length,
+            );
           }
           break;
-        case 'ArrowRight':
+        case "ArrowRight":
           e.preventDefault();
           if (selectedProject?.gallery && selectedProject.gallery.length > 1) {
-            setCurrentImageIndex(prev => (prev + 1) % selectedProject.gallery!.length);
+            setCurrentImageIndex(
+              (prev) => (prev + 1) % selectedProject.gallery!.length,
+            );
           }
           break;
-        case 'f':
-        case 'F':
+        case "f":
+        case "F":
           e.preventDefault();
           toggleFullscreen();
           break;
-        case 's':
-        case 'S':
+        case "s":
+        case "S":
           e.preventDefault();
           handleShare();
           break;
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [selectedProject, navigateProject, closeProject, handleShare, toggleFullscreen, isSearchActive]);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [
+    selectedProject,
+    navigateProject,
+    closeProject,
+    handleShare,
+    toggleFullscreen,
+    isSearchActive,
+  ]);
 
   const handleImageError = (id: number) => {
-    setImageError(prev => ({ ...prev, [id]: true }));
+    setImageError((prev) => ({ ...prev, [id]: true }));
   };
 
   const toggleSearch = () => {
@@ -234,7 +304,7 @@ const VideoGallery: React.FC = () => {
     if (!isSearchActive) {
       setTimeout(() => searchInputRef.current?.focus(), 100);
     } else {
-      setSearchTerm('');
+      setSearchTerm("");
     }
   };
 
@@ -245,17 +315,17 @@ const VideoGallery: React.FC = () => {
       opacity: 1,
       transition: {
         stiffness: 300,
-        damping: 25
-      }
-    }
+        damping: 25,
+      },
+    },
   };
 
   const buttonHoverAnimation = {
     scale: 1.05,
     transition: {
       stiffness: 400,
-      damping: 10
-    }
+      damping: 10,
+    },
   };
 
   const cardHoverAnimation = {
@@ -263,12 +333,15 @@ const VideoGallery: React.FC = () => {
     y: -8,
     transition: {
       stiffness: 300,
-      damping: 20
-    }
+      damping: 20,
+    },
   };
 
   return (
-    <section id="gallery" className="py-12 sm:py-16 md:py-20 min-h-screen relative overflow-hidden">
+    <section
+      id="gallery"
+      className="py-12 sm:py-16 md:py-20 min-h-screen relative overflow-hidden"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
@@ -291,7 +364,9 @@ const VideoGallery: React.FC = () => {
             variants={itemAnimation}
             className="text-black max-w-3xl mx-auto text-lg md:text-xl leading-relaxed dark:text-white"
           >
-            Sección donde presento proyectos desarrollados para empresas, clientes y también proyectos personales que reflejan mis habilidades.
+            Sección donde presento proyectos desarrollados para empresas,
+            clientes y también proyectos personales que reflejan mis
+            habilidades.
             {/* <span className="block text-sm text-gray-400 mt-2">Press &quot;/&quot; to search or use arrow keys to navigate</span> */}
           </motion.p>
         </motion.div>
@@ -307,8 +382,9 @@ const VideoGallery: React.FC = () => {
               <div className="relative flex items-center">
                 <motion.button
                   onClick={toggleSearch}
-                  className={`flex items-center gap-2 px-4 py-2 bg-black border border-gray-600 rounded text-gray-300 hover:bg-gray-800 transition-all duration-300 ${isSearchActive ? 'w-full' : 'w-auto'
-                    }`}
+                  className={`flex items-center gap-2 px-4 py-2 bg-black border border-gray-600 rounded text-gray-300 hover:bg-gray-800 transition-all duration-300 ${
+                    isSearchActive ? "w-full" : "w-auto"
+                  }`}
                   whileHover={buttonHoverAnimation}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -333,13 +409,16 @@ const VideoGallery: React.FC = () => {
                         placeholder="Search projects..."
                         className="w-full px-4 py-2 pl-10 bg-black border border-gray-600 rounded text-white placeholder-gray-400 focus:outline-none focus:border-white"
                       />
-                      <Search size={20} className="absolute left-3 text-gray-400" />
+                      <Search
+                        size={20}
+                        className="absolute left-3 text-gray-400"
+                      />
                       {searchTerm && (
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           onClick={() => {
-                            setSearchTerm('');
+                            setSearchTerm("");
                             searchInputRef.current?.focus();
                           }}
                           className="absolute right-3 text-gray-400 hover:text-white"
@@ -373,7 +452,6 @@ const VideoGallery: React.FC = () => {
               </motion.button>
             ))}
           </div> */}
-
         </motion.div>
 
         <motion.div
@@ -407,7 +485,9 @@ const VideoGallery: React.FC = () => {
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-900 flex items-center justify-center">
-                    <span className="text-gray-400 text-sm font-medium">Image unavailable</span>
+                    <span className="text-gray-400 text-sm font-medium">
+                      Image unavailable
+                    </span>
                   </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
@@ -434,7 +514,9 @@ const VideoGallery: React.FC = () => {
                     transition={{ delay: 0.3 }}
                   >
                     <div className="px-4 py-2 rounded bg-white flex items-center justify-center">
-                      <span className="text-black text-sm font-bold uppercase tracking-wider">Ver Detalles</span>
+                      <span className="text-black text-sm font-bold uppercase tracking-wider">
+                        Ver Detalles
+                      </span>
                     </div>
                   </motion.div>
                 </div>
@@ -452,9 +534,14 @@ const VideoGallery: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center py-12"
           >
-            <p className="text-gray-400 text-lg">No hay proyectos encontrados de esa categoria.</p>
+            <p className="text-gray-400 text-lg">
+              No hay proyectos encontrados de esa categoria.
+            </p>
             <button
-              onClick={() => { setCategory('all'); setSearchTerm(''); }}
+              onClick={() => {
+                setCategory("all");
+                setSearchTerm("");
+              }}
               className="mt-4 px-6 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors"
             >
               Limpiar Filtros
@@ -466,7 +553,7 @@ const VideoGallery: React.FC = () => {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 sm:p-6 ${isFullscreen ? 'p-0' : ''}`}
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 sm:p-6 ${isFullscreen ? "p-0" : ""}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -474,8 +561,11 @@ const VideoGallery: React.FC = () => {
           >
             <motion.div
               ref={modalRef}
-              className={`relative bg-black w-full overflow-y-auto rounded shadow border border-gray-800 ${isFullscreen ? 'max-w-none max-h-none h-full rounded-none' : 'max-w-6xl max-h-[90vh]'
-                }`}
+              className={`relative bg-black w-full overflow-y-auto rounded shadow border border-gray-800 ${
+                isFullscreen
+                  ? "max-w-none max-h-none h-full rounded-none"
+                  : "max-w-6xl max-h-[90vh]"
+              }`}
               initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 50 }}
@@ -483,19 +573,27 @@ const VideoGallery: React.FC = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="absolute top-0 left-0 right-0 z-20 flex justify-between items-center p-4 bg-gradient-to-b from-black/80 to-transparent">
+                
                 <div className="flex items-center space-x-4">
-                  <span className="text-gray-400 text-sm">Use ← → to navigate gallery</span>
+                  <span className="text-gray-400 text-sm">
+                    
+                  </span>
                 </div>
+
+                
                 <div className="flex items-center space-x-2">
-              
                   <button
                     onClick={toggleFullscreen}
                     className="w-10 h-10 rounded bg-gray-800/80 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors duration-300"
                     title="Fullscreen (F)"
                   >
-                    {isFullscreen ? <Minimize size={16} /> : <Expand size={16} />}
+                    {isFullscreen ? (
+                      <Minimize size={16} />
+                    ) : (
+                      <Expand size={16} />
+                    )}
                   </button>
-                  
+
                   <button
                     onClick={closeProject}
                     className="w-10 h-10 rounded bg-gray-800/80 flex items-center justify-center text-white hover:bg-gray-500 transition-colors duration-300"
@@ -506,70 +604,91 @@ const VideoGallery: React.FC = () => {
                 </div>
               </div>
 
-
-              <div className={`relative bg-black group/gallery ${isFullscreen ? 'h-full' : 'aspect-video'}`}>
+              <div
+                className={`relative bg-black group/gallery ${isFullscreen ? "h-full" : "aspect-video"}`}
+              >
                 <img
-                  src={selectedProject.gallery && selectedProject.gallery.length > 0
-                    ? selectedProject.gallery[currentImageIndex]
-                    : selectedProject.thumbnailUrl}
+                  src={
+                    selectedProject.gallery &&
+                    selectedProject.gallery.length > 0
+                      ? selectedProject.gallery[currentImageIndex]
+                      : selectedProject.thumbnailUrl
+                  }
                   alt={selectedProject.title}
                   className="w-full h-full object-contain"
                 />
 
                 {/* Controles de la galería interna */}
-                {selectedProject.gallery && selectedProject.gallery.length > 1 && (
-                  <>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCurrentImageIndex(prev => (prev - 1 + selectedProject.gallery!.length) % selectedProject.gallery!.length);
-                      }}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-white opacity-0 group-hover/gallery:opacity-100 transition-opacity hover:bg-white hover:text-black"
-                    >
-                      <ChevronLeft size={18} />
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setCurrentImageIndex(prev => (prev + 1) % selectedProject.gallery!.length);
-                      }}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-white opacity-0 group-hover/gallery:opacity-100 transition-opacity hover:bg-white hover:text-black"
-                    >
-                      <ChevronRight size={18} />
-                    </button>
+                {selectedProject.gallery &&
+                  selectedProject.gallery.length > 1 && (
+                    <>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(
+                            (prev) =>
+                              (prev - 1 + selectedProject.gallery!.length) %
+                              selectedProject.gallery!.length,
+                          );
+                        }}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-white opacity-0 group-hover/gallery:opacity-100 transition-opacity hover:bg-white hover:text-black"
+                      >
+                        <ChevronLeft size={18} />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(
+                            (prev) =>
+                              (prev + 1) % selectedProject.gallery!.length,
+                          );
+                        }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 flex items-center justify-center text-white opacity-0 group-hover/gallery:opacity-100 transition-opacity hover:bg-white hover:text-black"
+                      >
+                        <ChevronRight size={18} />
+                      </button>
 
-                    {/* Indicador de posición de la galería */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
-                      {selectedProject.gallery.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCurrentImageIndex(idx);
-                          }}
-                          className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIndex ? 'bg-white w-4' : 'bg-white/40'}`}
-                        />
-                      ))}
-                    </div>
-                  </>
-                )}
+                      {/* Indicador de posición de la galería */}
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
+                        {selectedProject.gallery.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setCurrentImageIndex(idx);
+                            }}
+                            className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIndex ? "bg-white w-4" : "bg-white/40"}`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
               </div>
 
               {/* Tira de Miniaturas (Thumbnails) */}
-              {selectedProject.gallery && selectedProject.gallery.length > 1 && !isFullscreen && (
-                <div className="px-6 py-4 bg-zinc-950 border-b border-gray-800 flex justify-center space-x-4 overflow-x-auto">
-                  {selectedProject.gallery.map((img, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentImageIndex(idx)}
-                      className={`relative flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${idx === currentImageIndex ? 'border-white scale-110' : 'border-transparent opacity-50 hover:opacity-100'
+              {selectedProject.gallery &&
+                selectedProject.gallery.length > 1 &&
+                !isFullscreen && (
+                  <div className="px-6 py-4 bg-zinc-950 border-b border-gray-800 flex justify-center space-x-4 overflow-x-auto">
+                    {selectedProject.gallery.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentImageIndex(idx)}
+                        className={`relative flex-shrink-0 w-20 h-12 rounded overflow-hidden border-2 transition-all ${
+                          idx === currentImageIndex
+                            ? "border-white scale-110"
+                            : "border-transparent opacity-50 hover:opacity-100"
                         }`}
-                    >
-                      <img src={img} alt={`Thumb ${idx}`} className="w-full h-full object-cover" />
-                    </button>
-                  ))}
-                </div>
-              )}
+                      >
+                        <img
+                          src={img}
+                          alt={`Thumb ${idx}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
 
               {!isFullscreen && (
                 <motion.div
@@ -589,18 +708,35 @@ const VideoGallery: React.FC = () => {
                   </p>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-white font-semibold mb-4 text-lg"> Detalles del Proyecto </h3>
+                      <h3 className="text-white font-semibold mb-4 text-lg">
+                        {" "}
+                        Detalles del Proyecto{" "}
+                      </h3>
                       <ul className="text-gray-200 space-y-3">
-                        <li><span className="font-semibold">Cliente:</span> {selectedProject.client}</li>
+                        <li>
+                          <span className="font-semibold">Cliente:</span>{" "}
+                          {selectedProject.client}
+                        </li>
                         {/* <li><span className="font-semibold">Director:</span> {selectedProject.director}</li> */}
-                        <li><span className="font-semibold">Año:</span> {selectedProject.year}</li>
-                        <li><span className="font-semibold">Ubicación:</span> {selectedProject.location}</li>
+                        <li>
+                          <span className="font-semibold">Año:</span>{" "}
+                          {selectedProject.year}
+                        </li>
+                        <li>
+                          <span className="font-semibold">Ubicación:</span>{" "}
+                          {selectedProject.location}
+                        </li>
                       </ul>
                     </div>
                     <div>
-                      <h3 className="text-white font-semibold mb-4 text-lg">Stack Tecnológico</h3>
+                      <h3 className="text-white font-semibold mb-4 text-lg">
+                        Stack Tecnológico
+                      </h3>
                       <ul className="text-gray-200 space-y-3">
-                        <li><span className="font-semibold"> Tecnologías :</span> {selectedProject.camera}</li>
+                        <li>
+                          <span className="font-semibold"> Tecnologías :</span>{" "}
+                          {selectedProject.camera}
+                        </li>
                         {/* <li><span className="font-semibold">Lenses:</span> {selectedProject.lenses}</li>
                         <li><span className="font-semibold">Format:</span> {selectedProject.format}</li>
                         <li><span className="font-semibold">Aspect Ratio:</span> {selectedProject.aspectRatio}</li> */}
