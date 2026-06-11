@@ -126,6 +126,33 @@ const projects: Project[] = [
     format: "4K XAVC",
     aspectRatio: "16:9",
   },
+
+  {
+    id: 3,
+    title: "Pagina Web - Mundial",
+    category: "Entretenimiento",
+    thumbnailUrl: "/images/projects/proyecto_4_1.png",
+    gallery: [
+      "/images/projects/proyecto_4_1.png",
+    ], // Agregado galería inicial
+    description: " Creacion de una pagina web informativa y de entretenimiento sobre el mundial 2026 ",
+    client: " Independiente ",
+    director: "Sarah Chen",
+    year: "2026",
+    location: "Lima, Perú",
+    camera: "HTML, CSS, TAILWIND CSS, ASTRO",
+    lenses: "AppShet",
+    format: "4K XAVC",
+    aspectRatio: "16:9",
+  },
+
+
+
+
+
+
+
+
 ];
 
 const useScrollAnimation = () => {
