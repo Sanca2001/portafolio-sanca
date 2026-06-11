@@ -79,7 +79,7 @@ const projects: Project[] = [
     location: "Lima, Perú",
     camera:
       "HTML5, CSS3, JavaScript, MySQL WorkBeanch, Xampp, Laravel - PHP, Blade, Bootstrap",
-    lenses: "Zeiss Supreme Primes",
+    lenses: "",
     format: "6K RAW",
     aspectRatio: "2.39:1",
   },
@@ -99,7 +99,7 @@ const projects: Project[] = [
     year: "2025",
     location: "Huacho, Perú",
     camera: "AppShet - Low Code",
-    lenses: "AppShet",
+    lenses: "",
     format: "4K XAVC",
     aspectRatio: "16:9",
   },
@@ -122,7 +122,7 @@ const projects: Project[] = [
     year: "2026",
     location: "Lima, Perú",
     camera: "Python, CustomTkinter, Excel, Pandas, Numpy, openpyxl, msal",
-    lenses: "AppShet",
+    lenses: "",
     format: "4K XAVC",
     aspectRatio: "16:9",
   },
@@ -135,13 +135,13 @@ const projects: Project[] = [
     gallery: [
       "/images/projects/proyecto_4_1.png",
     ], // Agregado galería inicial
-    description: " Creacion de una pagina web informativa y de entretenimiento sobre el mundial 2026 ",
+    description: " Creacion de una pagina web informativa y de entretenimiento sobre el mundial 2026",
     client: " Independiente ",
     director: "Sarah Chen",
     year: "2026",
     location: "Lima, Perú",
     camera: "HTML, CSS, TAILWIND CSS, ASTRO",
-    lenses: "AppShet",
+    lenses: "https://pagina-mundial.vercel.app/",
     format: "4K XAVC",
     aspectRatio: "16:9",
   },
@@ -764,8 +764,19 @@ const VideoGallery: React.FC = () => {
                           <span className="font-semibold"> Tecnologías :</span>{" "}
                           {selectedProject.camera}
                         </li>
-                        {/* <li><span className="font-semibold">Lenses:</span> {selectedProject.lenses}</li>
-                        <li><span className="font-semibold">Format:</span> {selectedProject.format}</li>
+
+                        {selectedProject.lenses && (
+                          <li>
+                            <span className="font-semibold">Link:</span>
+                            <a target="_blank" rel="noopener noreferrer" href={selectedProject.lenses}>
+                              {selectedProject.lenses}
+                            </a>
+                          </li>
+                        )}
+
+
+
+                        {/* <li><span className="font-semibold">Format:</span> {selectedProject.format}</li>
                         <li><span className="font-semibold">Aspect Ratio:</span> {selectedProject.aspectRatio}</li> */}
                       </ul>
                     </div>
