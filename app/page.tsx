@@ -20,6 +20,9 @@ const Portfolio = () => {
 
       <Skills />
 
+      <Experiencia />
+
+
       <ProyectosSection />
 
       <Footer />

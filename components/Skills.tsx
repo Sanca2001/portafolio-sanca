@@ -380,7 +380,7 @@ function Skills() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-8 overflow-hidden bg-[#0A0A0A] ">
+    <div className="flex flex-col items-center justify-center gap-8 overflow-hidden bg-[#0A0A0A] ">
       <h2 className="text-3xl sm:text-3xl text-center font-bold text-[#f5f5f5] dark:text-white mb-4">
         Tecnologías y herramientas
       </h2>

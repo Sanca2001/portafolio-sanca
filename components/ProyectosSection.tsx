@@ -118,7 +118,7 @@ const ProjectCard = ({ proyecto }: { proyecto: Proyecto }) => {
 // 4. Componente principal que recorre el array
 const Saludo = () => {
     return (
-        <div className='min-h-screen bg-[#0A0A0A]'>
+        <div className='min-h-screen bg-[#0A0A0A] pt-60'>
             <h2 className="text-3xl sm:text-3xl text-center font-bold text-[#f5f5f5] dark:text-white mb-4">
                 Proyectos Desarrollados
             </h2>

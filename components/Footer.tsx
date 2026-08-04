@@ -15,7 +15,7 @@ const LinkedinIcon = () => (
 
 const Footer = () => {
     return (
-        <div className="w-full bg-[#0A0A0A] pt-20 pb-16">
+        <div className="w-full bg-[#0A0A0A] pt-40 pb-16">
             <footer className=" max-w-7xl m-auto relative overflow-hidden">
 
                 {/* Fila superior: Nombre + Redes sociales */}
