@@ -13,8 +13,18 @@ interface Proyecto {
 // 2. Array con los datos de cada proyecto
 const proyectos: Proyecto[] = [
 
+
     {
         id: 1,
+        imagen: "/images/projects/proyecto_5.png",
+        tags: ["PHP - LARAVEL", "SQL Server","XAMPP"],
+        titulo: "Aplicación web - Control de Producción",
+        descripcion: "Creacion de una aplicacion web para controlar el stock de produccion en una empresa",
+        link: "",
+    },
+
+    {
+        id: 2,
         imagen: "/images/projects/proyecto_4_1.png",
         tags: ["HTML", "CSS", "TAILWIND CSS", "ASTRO"],
         titulo: "Pagina Web - Mundial",
@@ -23,7 +33,7 @@ const proyectos: Proyecto[] = [
     },
 
     {
-        id: 2,
+        id: 3,
         imagen: "/images/projects/proyecto_3.jpg",
         tags: ["Python", "CustomTkinter", "Excel", "Pandas", "Numpy", "openpyxl", "msal"],
         titulo: "Aplicación Gestión de Expediting y Correos",
@@ -31,10 +41,8 @@ const proyectos: Proyecto[] = [
         link: "#",
     },
 
-
-
     {
-        id: 3,
+        id: 4,
         imagen: "/images/projects/proyecto_2.jfif",
         tags: ["AppShet - Low Code"],
         titulo: "Aplicación de Inventarios",
@@ -43,7 +51,7 @@ const proyectos: Proyecto[] = [
     },
 
     {
-        id: 4,
+        id: 5,
         imagen: "/images/projects/proyecto_1.jfif",
         tags: ["HTML5", "CSS3", "JavaScript", "MySQL WorkBeanch", "Xampp", "Laravel - PHP", "Blade", "Bootstrap"],
         titulo: "Sistema de Inventarios",
