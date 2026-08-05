@@ -12,24 +12,18 @@ interface Proyecto {
 
 // 2. Array con los datos de cada proyecto
 const proyectos: Proyecto[] = [
+
     {
         id: 1,
-        imagen: "/images/projects/proyecto_1.jfif",
-        tags: ["HTML5", "CSS3", "JavaScript", "MySQL WorkBeanch", "Xampp", "Laravel - PHP", "Blade", "Bootstrap"],
-        titulo: "Sistema de Inventarios",
-        descripcion: "Sistema de inventarios para la empresa Mobile Phones Servicios Generales, en donde Diseñe y desarrolle un sistema de inventarios para el control, registro de productos y movimientos de stock",
-        link: "#",
+        imagen: "/images/projects/proyecto_4_1.png",
+        tags: ["HTML", "CSS", "TAILWIND CSS", "ASTRO"],
+        titulo: "Pagina Web - Mundial",
+        descripcion: "Creacion de una pagina web informativa y de entretenimiento sobre el mundial 2026",
+        link: "https://pagina-mundial.vercel.app/",
     },
+
     {
         id: 2,
-        imagen: "/images/projects/proyecto_2.jfif",
-        tags: ["AppShet - Low Code"],
-        titulo: "Aplicación de Inventarios",
-        descripcion: "Como parte de un proyecto personal implemente una aplicación móvil low code utilizando AppShet para la gestión de inventarios de equipos de TI",
-        link: "#",
-    },
-    {
-        id: 3,
         imagen: "/images/projects/proyecto_3.jpg",
         tags: ["Python", "CustomTkinter", "Excel", "Pandas", "Numpy", "openpyxl", "msal"],
         titulo: "Aplicación Gestión de Expediting y Correos",
@@ -37,14 +31,28 @@ const proyectos: Proyecto[] = [
         link: "#",
     },
 
+
+
+    {
+        id: 3,
+        imagen: "/images/projects/proyecto_2.jfif",
+        tags: ["AppShet - Low Code"],
+        titulo: "Aplicación de Inventarios",
+        descripcion: "Como parte de un proyecto personal implemente una aplicación móvil low code utilizando AppShet para la gestión de inventarios de equipos de TI",
+        link: "#",
+    },
+
     {
         id: 4,
-        imagen: "/images/projects/proyecto_4_1.png",
-        tags: ["HTML", "CSS", "TAILWIND CSS", "ASTRO"],
-        titulo: "Pagina Web - Mundial",
-        descripcion: "Creacion de una pagina web informativa y de entretenimiento sobre el mundial 2026",
-        link: "https://pagina-mundial.vercel.app/",
+        imagen: "/images/projects/proyecto_1.jfif",
+        tags: ["HTML5", "CSS3", "JavaScript", "MySQL WorkBeanch", "Xampp", "Laravel - PHP", "Blade", "Bootstrap"],
+        titulo: "Sistema de Inventarios",
+        descripcion: "Sistema de inventarios para la empresa Mobile Phones Servicios Generales, en donde Diseñe y desarrolle un sistema de inventarios para el control, registro de productos y movimientos de stock",
+        link: "#",
     },
+
+
+
 
 
 ];
