@@ -1,151 +1,84 @@
+"use client";
+
 import React from 'react';
+import Link from 'next/link';
+import { proyectos, Proyecto } from '@/data/proyectos';
 
-// 1. Definimos el tipo de un proyecto
-interface Proyecto {
-    id: number;
-    imagen: string;
-    tags: string[];
-    titulo: string;
-    descripcion: string;
-    link: string;
-}
-
-// 2. Array con los datos de cada proyecto
-const proyectos: Proyecto[] = [
-
-
-    {
-        id: 1,
-        imagen: "/images/projects/proyecto_5.png",
-        tags: ["PHP - LARAVEL", "SQL Server","XAMPP"],
-        titulo: "Aplicación web - Control de Producción",
-        descripcion: "Creacion de una aplicacion web para controlar el stock de produccion en una empresa",
-        link: "",
-    },
-
-    {
-        id: 2,
-        imagen: "/images/projects/proyecto_4_1.png",
-        tags: ["HTML", "CSS", "TAILWIND CSS", "ASTRO"],
-        titulo: "Pagina Web - Mundial",
-        descripcion: "Creacion de una pagina web informativa y de entretenimiento sobre el mundial 2026",
-        link: "https://pagina-mundial.vercel.app/",
-    },
-
-    {
-        id: 3,
-        imagen: "/images/projects/proyecto_3.jpg",
-        tags: ["Python", "CustomTkinter", "Excel", "Pandas", "Numpy", "openpyxl", "msal"],
-        titulo: "Aplicación Gestión de Expediting y Correos",
-        descripcion: "Solución de aplicaci{on de escritorio, para optimizar los procesos de seguimiento (expediting), y envio de correos",
-        link: "#",
-    },
-
-    {
-        id: 4,
-        imagen: "/images/projects/proyecto_2.jfif",
-        tags: ["AppShet - Low Code"],
-        titulo: "Aplicación de Inventarios",
-        descripcion: "Como parte de un proyecto personal implemente una aplicación móvil low code utilizando AppShet para la gestión de inventarios de equipos de TI",
-        link: "#",
-    },
-
-    {
-        id: 5,
-        imagen: "/images/projects/proyecto_1.jfif",
-        tags: ["HTML5", "CSS3", "JavaScript", "MySQL WorkBeanch", "Xampp", "Laravel - PHP", "Blade", "Bootstrap"],
-        titulo: "Sistema de Inventarios",
-        descripcion: "Sistema de inventarios para la empresa Mobile Phones Servicios Generales, en donde Diseñe y desarrolle un sistema de inventarios para el control, registro de productos y movimientos de stock",
-        link: "#",
-    },
-
-
-
-
-
-];
-
-// 3. Componente reutilizable para UNA tarjeta
+// Componente reutilizable para una tarjeta de proyecto
 const ProjectCard = ({ proyecto }: { proyecto: Proyecto }) => {
     return (
-        <div className="max-w-sm rounded-3xl overflow-hidden bg-[#1c1a19] border border-gray-800 flex flex-col h-full">
+        <div className="max-w-sm rounded-3xl overflow-hidden bg-[#1c1a19] border border-gray-800 flex flex-col h-full hover:border-gray-600 transition-all duration-300">
 
-
-            {/* Sección superior clara con el mockup */}
-            <div className="bg-[#f3f1ec] p-6 flex items-center justify-center gap-4">
-
+            {/* Sección superior clara con la imagen o mockup */}
+            <div className="bg-[#f3f1ec] p-6 flex items-center justify-center min-h-[220px]">
                 <img
                     src={proyecto.imagen}
                     alt={proyecto.titulo}
-                    className="w-full h-auto object-contain"
+                    className="w-full h-auto max-h-[180px] object-contain transition-transform duration-500 hover:scale-105"
                 />
             </div>
 
-            {/* Sección inferior oscura con la info */}
+            {/* Sección inferior oscura con la información */}
             <div className="p-6 space-y-4 flex flex-col flex-1">
 
                 {/* Tags */}
                 <div className="flex gap-2 flex-wrap">
-
                     {proyecto.tags.map((tag) => (
                         <span
                             key={tag}
-                            className="px-3 py-1 rounded-full border border-gray-600 text-gray-300 text-sm"
-
+                            className="px-3 py-1 rounded-full border border-gray-700 bg-neutral-900/60 text-gray-300 text-xs font-mono"
                         >
                             {tag}
                         </span>
                     ))}
                 </div>
 
-
                 {/* Título */}
-                <h2 className="text-white text-3xl font-bold">
+                <h2 className="text-white text-2xl sm:text-3xl font-bold leading-tight">
                     {proyecto.titulo}
-
                 </h2>
 
                 {/* Descripción */}
                 <div className="text-gray-400 text-sm leading-relaxed">
-                    <p>
-                        {proyecto.descripcion}
+                    <p>{proyecto.descripcion}</p>
+                </div>
 
+                {/* Enlace a detalle de proyecto */}
+                <Link
+                    href={`/proyectos/${proyecto.id}`}
+                    className="inline-flex items-center gap-2 text-white text-base sm:text-lg font-medium mt-auto pt-4 group text-cyan-400 hover:text-cyan-300 transition-colors"
+                >
+                    Saber más
+                    <span className="transition-transform group-hover:translate-x-1.5">→</span>
+                </Link>
+
+            </div>
+        </div>
+    );
+};
+
+// Componente principal de la sección de proyectos
+const ProyectosSection = () => {
+    return (
+        <section id="proyectos" className="min-h-screen bg-[#0A0A0A] pt-40 pb-20 px-4 sm:px-6">
+            <div className="max-w-7xl mx-auto space-y-10">
+                <div className="text-center space-y-3">
+                    <h2 className="text-3xl sm:text-4xl text-center font-bold text-[#f5f5f5] tracking-tight">
+                        Proyectos Desarrollados
+                    </h2>
+                    <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+                        Explora la selección de aplicaciones web, soluciones móviles y automatizaciones que he diseñado e implementado.
                     </p>
                 </div>
 
-                {/* Link con flecha */}
-                <a
-                    href={proyecto.link}
-                    target='_blank'
-                    className="inline-flex items-center gap-2 text-white text-lg font-medium mt-auto group"
-                >
-                    Ver Proyecto
-                    <span className="transition-transform group-hover:translate-x-1">
-                        →
-                    </span>
-                </a>
-
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch justify-items-center">
+                    {proyectos.map((proyecto) => (
+                        <ProjectCard key={proyecto.id} proyecto={proyecto} />
+                    ))}
+                </div>
             </div>
-        </div>
-
+        </section>
     );
 };
 
-// 4. Componente principal que recorre el array
-const Saludo = () => {
-    return (
-        <div className='min-h-screen bg-[#0A0A0A] pt-60'>
-            <h2 className="text-3xl sm:text-3xl text-center font-bold text-[#f5f5f5] dark:text-white mb-4">
-                Proyectos Desarrollados
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-8 max-w-7xl mx-auto pt-5 pb-5 items-stretch">
-                {proyectos.map((proyecto) => (
-                    <ProjectCard key={proyecto.id} proyecto={proyecto} />
-                ))}
-            </div>
-        </div>
-    );
-};
-
-export default Saludo;
+export default ProyectosSection;
