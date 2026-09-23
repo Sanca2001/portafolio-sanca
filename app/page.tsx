@@ -18,11 +18,11 @@ export default function Page() {
   };
 
   return (
-    <main className="bg-[#f8f9fb] min-h-screen flex flex-col justify-between">
+    <main className="bg-[#f8f9fb] min-h-screen flex flex-col justify-between selection:bg-violet-100 selection:text-violet-900">
       <div>
         <Hero activeTab={activeTab} onTabChange={setActiveTab} />
 
-        <div className="max-w-[1170px] mx-auto px-6 pt-4">
+        <div className="max-w-[1170px] mx-auto px-4 sm:px-6 pt-2 sm:pt-4">
           {(activeTab === "Proyectos" || activeTab === "Projects") && <ProjectsGrid />}
 
           {activeTab === "Experiments" && (
