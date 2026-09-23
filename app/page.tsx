@@ -1,48 +1,45 @@
 "use client";
-import React from "react"
+
+import { useState } from "react";
 import Hero from "@/components/Hero";
-import CoderProfileCard from "@/components/CoderProfileCard";
-import Skills from "@/components/Skills";
-import Proyectos from "@/components/Protectos";
-import Experiencia from "@/components/Experiencia";
-import Banner from "@/components/Banner";
-import ProyectosSection from "@/components/ProyectosSection";
+import ProjectsGrid from "@/components/ProjectsGrid";
+import PlaceholderSection from "@/components/PlaceholderSection";
 import Footer from "@/components/Footer";
 
+export default function Page() {
+  const [activeTab, setActiveTab] = useState<string>("Proyectos");
 
-// Main component
-const Portfolio = () => {
+  const handleNavigate = (tab: string) => {
+    if (tab === "Projects" || tab === "Work") {
+      setActiveTab("Proyectos");
+    } else {
+      setActiveTab(tab);
+    }
+  };
+
   return (
+    <main className="bg-[#f8f9fb] min-h-screen flex flex-col justify-between">
+      <div>
+        <Hero activeTab={activeTab} onTabChange={setActiveTab} />
 
-    <div className="">
+        <div className="max-w-[1170px] mx-auto px-6 pt-4">
+          {(activeTab === "Proyectos" || activeTab === "Projects") && <ProjectsGrid />}
 
-      <Banner />
+          {activeTab === "Experiments" && (
+            <PlaceholderSection title="Experiments" tab="experiments" />
+          )}
 
-      <Skills />
+          {activeTab === "About" && (
+            <PlaceholderSection title="About" tab="about" />
+          )}
 
-      <Experiencia />
+          {activeTab === "Resume" && (
+            <PlaceholderSection title="Resume" tab="resume" />
+          )}
+        </div>
+      </div>
 
-
-      <ProyectosSection />
-
-      <Footer />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
+      <Footer onNavigate={handleNavigate} />
+    </main>
   );
-};
-
-export default Portfolio;
+}

@@ -14,7 +14,7 @@ export const proyectos: Proyecto[] = [
     {
         id: 1,
         imagen: "/images/projects/proyecto_6.png",
-        tags: ["PHP - LARAVEL", "SQL Server", "XAMPP"],
+        tags: ["Web application"],
         titulo: "Sistema de Programación de Turnos",
         descripcion: "Aplicación Web para la gestión del personal en la asignación de turnos laborales",
         link: "",
@@ -24,7 +24,7 @@ export const proyectos: Proyecto[] = [
     {
         id: 2,
         imagen: "/images/projects/proyecto_5.png",
-        tags: ["PHP - LARAVEL", "SQL Server", "XAMPP"],
+        tags: ["Web application"],
         titulo: "Aplicación web - Control de Producción",
         descripcion: "Creación de una aplicación web para controlar el stock de producción en una empresa",
         link: "",
@@ -34,7 +34,7 @@ export const proyectos: Proyecto[] = [
     {
         id: 3,
         imagen: "/images/projects/proyecto_4_1.png",
-        tags: ["HTML", "CSS", "TAILWIND CSS", "ASTRO"],
+        tags: ["Information page"],
         titulo: "Pagina Web - Mundial",
         descripcion: "Creación de una página web informativa y de entretenimiento sobre el mundial 2026",
         link: "https://pagina-mundial.vercel.app/",
@@ -44,7 +44,7 @@ export const proyectos: Proyecto[] = [
     {
         id: 4,
         imagen: "/images/projects/proyecto_3.jpg",
-        tags: ["Python", "CustomTkinter", "Excel", "Pandas", "Numpy", "openpyxl", "msal"],
+        tags: ["Desktop application"],
         titulo: "Aplicación Gestión de Expediting y Correos",
         descripcion: "Solución de aplicación de escritorio para optimizar los procesos de seguimiento (expediting) y envío de correos",
         link: "#",
@@ -54,7 +54,7 @@ export const proyectos: Proyecto[] = [
     {
         id: 5,
         imagen: "/images/projects/proyecto_2.jfif",
-        tags: ["AppSheet - Low Code"],
+        tags: ["Mobile application"],
         titulo: "Aplicación de Inventarios",
         descripcion: "Como parte de un proyecto personal implementé una aplicación móvil low code utilizando AppSheet para la gestión de inventarios de equipos de TI",
         link: "#",
@@ -64,7 +64,7 @@ export const proyectos: Proyecto[] = [
     {
         id: 6,
         imagen: "/images/projects/proyecto_1.jfif",
-        tags: ["HTML5", "CSS3", "JavaScript", "MySQL Workbench", "Xampp", "Laravel - PHP", "Blade", "Bootstrap"],
+        tags: ["Web application"],
         titulo: "Sistema de Inventarios",
         descripcion: "Sistema de inventarios para la empresa Mobile Phones Servicios Generales, para el control, registro de productos y movimientos de stock",
         link: "#",

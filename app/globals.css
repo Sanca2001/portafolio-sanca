@@ -49,10 +49,10 @@
 }
 
 body {
-  font-family: Arial;
+
   margin: 0;
-  background-color: red;
-  color: white;
+  background-color: #f8f9fb;
+  color: #111827;
 }
 
 @keyframes fade-in-up {
