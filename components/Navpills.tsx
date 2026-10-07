@@ -24,7 +24,7 @@ export default function NavPills({ activeTab, onTabChange }: NavPillsProps) {
   return (
     <nav
       aria-label="Principal"
-      className="inline-flex max-w-full overflow-x-auto items-center gap-0.5 sm:gap-1 rounded-[20px] bg-white/40 p-1 ring-1 ring-white/60 backdrop-blur-md no-scrollbar"
+      className="inline-flex max-w-full overflow-x-auto items-center gap-0.5 sm:gap-1 rounded-[20px] bg-[#FFD230] p-1 ring-1 ring-white/60 backdrop-blur-md no-scrollbar"
     >
       {items.map((item) => {
         const isActive = item === active;   
