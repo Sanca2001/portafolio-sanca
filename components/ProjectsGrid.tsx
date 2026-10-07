@@ -40,7 +40,7 @@ export default function ProjectsGrid({ items = proyectos }: ProjectsGridProps) {
                   <img
                     src={proyecto.imagen || proyecto.mockup}
                     alt={proyecto.titulo}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                     onError={(e) => {
                       const target = e.currentTarget;
                       target.style.display = "none";
