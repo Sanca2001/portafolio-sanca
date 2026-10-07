@@ -29,7 +29,10 @@ export default function ProjectsGrid({ items = proyectos }: ProjectsGridProps) {
           return (
             <Link
               key={proyecto.id}
-              href={`/proyectos/${proyecto.id}`}
+              href={proyecto.link || `/proyectos/${proyecto.id}`}
+              target={proyecto.link ? "_blank" : undefined}
+              rel={proyecto.link ? "noopener noreferrer" : undefined}
+
               className="group block cursor-pointer"
             >
               {/* Card Image Container */}

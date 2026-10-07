@@ -11,8 +11,22 @@ export interface Proyecto {
 }
 
 export const proyectos: Proyecto[] = [
+
+
     {
         id: 1,
+        imagen: "/images/projects/proyecto_7.png",
+        tags: ["Web application game"],
+        titulo: "Juego Abecedario",
+        descripcion: "Aplicación Web para la gestión del personal en la asignación de turnos laborales",
+        link: "https://juego-abecedario.vercel.app/",
+        mockup: "/images/projects/proyecto_6.png",
+        stack: ["laravel", "tailwind", "xampp", "sql server"],
+    },
+
+
+    {
+        id: 2,
         imagen: "/images/projects/proyecto_6.png",
         tags: ["Web application"],
         titulo: "Sistema de Programación de Turnos",
@@ -21,8 +35,9 @@ export const proyectos: Proyecto[] = [
         mockup: "/images/projects/proyecto_6.png",
         stack: ["laravel", "tailwind", "xampp", "sql server"],
     },
+
     {
-        id: 2,
+        id: 3,
         imagen: "/images/projects/proyecto_5.png",
         tags: ["Web application"],
         titulo: "Aplicación web - Control de Producción",
@@ -32,7 +47,7 @@ export const proyectos: Proyecto[] = [
         stack: ["laravel", "tailwind", "xampp", "sql server"],
     },
     {
-        id: 3,
+        id: 4,
         imagen: "/images/projects/proyecto_4_1.png",
         tags: ["Information page"],
         titulo: "Pagina Web - Mundial",
@@ -42,7 +57,7 @@ export const proyectos: Proyecto[] = [
         stack: ["html", "css", "tailwind", "astro"],
     },
     {
-        id: 4,
+        id: 5,
         imagen: "/images/projects/proyecto_3.jpg",
         tags: ["Desktop application"],
         titulo: "Aplicación Gestión de Expediting y Correos",
@@ -52,7 +67,7 @@ export const proyectos: Proyecto[] = [
         stack: ["python"],
     },
     {
-        id: 5,
+        id: 6,
         imagen: "/images/projects/proyecto_2.jfif",
         tags: ["Mobile application"],
         titulo: "Aplicación de Inventarios",
@@ -62,7 +77,7 @@ export const proyectos: Proyecto[] = [
         stack: [""],
     },
     {
-        id: 6,
+        id: 7,
         imagen: "/images/projects/proyecto_1.jfif",
         tags: ["Web application"],
         titulo: "Sistema de Inventarios",

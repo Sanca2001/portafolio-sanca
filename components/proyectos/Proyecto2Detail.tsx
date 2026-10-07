@@ -4,131 +4,110 @@ import React from "react";
 import Link from "next/link";
 import { Proyecto } from "@/data/proyectos";
 import LogoCarrusel from "@/components/loop/Loop";
-import { ArrowLeft, ExternalLink, Trophy, Flame, Globe2, Sparkles, Zap, Smartphone } from "lucide-react";
+import { ArrowLeft, Factory, Database, Layers, CheckCircle2, ShieldCheck, BarChart3, Cpu } from "lucide-react";
 
 interface Props {
     proyecto: Proyecto;
 }
 
-export default function Proyecto2Detail({ proyecto }: Props) {
+export default function Proyecto1Detail({ proyecto }: Props) {
     const stackTags = proyecto.stack && proyecto.stack.length > 0 && proyecto.stack[0] !== ""
         ? proyecto.stack
         : proyecto.tags;
 
     return (
-        <div className="min-h-screen bg-[#060813] text-white selection:bg-amber-400 selection:text-black">
-            {/* Nav */}
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-[#060813]/85 backdrop-blur-md border-b border-indigo-900/30 px-6 py-4">
+        <div className="min-h-screen bg-[#07090e] text-white selection:bg-cyan-500 selection:text-black">
+            {/* Header / Nav */}
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-[#07090e]/80 backdrop-blur-md border-b border-cyan-900/30 px-6 py-4">
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-neutral-400 hover:text-amber-400 text-sm font-medium transition-colors group"
+                        className="inline-flex items-center gap-2 text-neutral-400 hover:text-cyan-400 text-sm font-medium transition-colors group"
                     >
                         <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
                         Volver a Portafolio
                     </Link>
-                    <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-amber-400 bg-amber-950/40 border border-amber-500/30 px-3.5 py-1 rounded-full font-semibold">
-                        <Trophy className="w-3.5 h-3.5" />
-                        World Cup 2026 Edition
+                    <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-cyan-400 bg-cyan-950/60 border border-cyan-800/40 px-3 py-1 rounded-full font-mono">
+                        <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                        Enterprise Stock Control
                     </div>
                 </div>
             </nav>
 
             {/* Hero Section */}
-            <section className="relative pt-32 pb-24 px-6 overflow-hidden">
-                <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-indigo-600/15 rounded-full blur-[160px] pointer-events-none" />
-                <div className="absolute top-1/2 right-10 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
-
+            <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
                 <div className="max-w-7xl mx-auto">
                     <div className="grid lg:grid-cols-12 gap-12 items-center">
 
-                        {/* Text info */}
-                        <div className="lg:col-span-7 space-y-6">
-                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-500/10 to-indigo-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold">
-                                <Flame className="w-4 h-4 text-amber-400 animate-pulse" />
-                                Plataforma Informativa & Entretenimiento
+                        {/* Columna Izquierda: Información Principal */}
+                        <div className="lg:col-span-6 space-y-6">
+                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-xs font-semibold tracking-wide">
+                                <Factory className="w-4 h-4 text-cyan-400" />
+                                Software de Gestión Industrial
                             </div>
 
-                            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] bg-gradient-to-r from-white via-amber-100 to-indigo-200 bg-clip-text text-transparent">
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] bg-gradient-to-r from-white via-neutral-200 to-cyan-200 bg-clip-text text-transparent">
                                 {proyecto.titulo}
                             </h1>
 
-                            <p className="text-neutral-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                                {proyecto.descripcion}. Diseñada con un alto estándar estético usando Astro y Tailwind CSS para ofrecer una velocidad de carga ultrarrápida y navegación fluida entre sedes, equipos y novedades del torneo.
+                            <p className="text-neutral-300 text-base sm:text-lg leading-relaxed max-w-xl">
+                                {proyecto.descripcion}. Diseñado para optimizar y auditar el flujo constante de materia prima, stock terminado y rendimientos de producción dentro de la planta industrial.
                             </p>
 
-                            {/* Botón Acción Principal -> Link Vercel */}
-                            <div className="pt-4 flex flex-wrap items-center gap-4">
-                                {proyecto.link && proyecto.link !== "#" && (
-                                    <a
-                                        href={proyecto.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold text-base px-7 py-3.5 rounded-full shadow-lg shadow-amber-500/25 transition-all transform hover:-translate-y-0.5"
-                                    >
-                                        <Globe2 className="w-5 h-5" />
-                                        Ver Proyecto en Vivo
-                                        <ExternalLink className="w-4 h-4" />
-                                    </a>
-                                )}
-                            </div>
-
-                            {/* Tags */}
-                            <div className="flex flex-wrap gap-2 pt-4">
+                            {/* Tags de Tecnologías */}
+                            <div className="flex flex-wrap gap-2 pt-2">
                                 {proyecto.tags.map((tag, idx) => (
                                     <span
                                         key={idx}
-                                        className="px-3 py-1 text-xs font-mono bg-indigo-950/60 text-indigo-300 border border-indigo-800/40 rounded-full"
+                                        className="px-3 py-1 text-xs font-mono bg-neutral-900/90 text-cyan-300 border border-cyan-900/50 rounded-md"
                                     >
-                                        #{tag}
+                                        {tag}
                                     </span>
                                 ))}
                             </div>
+
+                            {/* Highlights Métricas */}
+                            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-neutral-800/80">
+                                <div className="p-3 rounded-lg bg-neutral-900/50 border border-neutral-800">
+                                    <div className="text-cyan-400 font-extrabold text-2xl">100%</div>
+                                    <div className="text-neutral-400 text-xs mt-1">Trazabilidad</div>
+                                </div>
+                                <div className="p-3 rounded-lg bg-neutral-900/50 border border-neutral-800">
+                                    <div className="text-cyan-400 font-extrabold text-2xl">SQL</div>
+                                    <div className="text-neutral-400 text-xs mt-1">Server Enterprise</div>
+                                </div>
+                                <div className="p-3 rounded-lg bg-neutral-900/50 border border-neutral-800">
+                                    <div className="text-cyan-400 font-extrabold text-2xl">Realtime</div>
+                                    <div className="text-neutral-400 text-xs mt-1">Control de Stock</div>
+                                </div>
+                            </div>
                         </div>
 
-                        {/* Visual Card / Mockup container */}
-                        <div className="lg:col-span-5">
-                            <div className="relative group rounded-3xl p-1 bg-gradient-to-b from-amber-500/30 via-indigo-500/20 to-transparent shadow-2xl">
-                                <div className="rounded-[22px] bg-[#0c0f20] p-6 space-y-6">
-                                    <div className="flex items-center justify-between border-b border-indigo-900/40 pb-4">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
-                                                <Trophy className="w-5 h-5" />
-                                            </div>
-                                            <div>
-                                                <h3 className="font-bold text-white text-sm">Copa Mundial 2026</h3>
-                                                <p className="text-xs text-neutral-400">Sitio Web Oficial de la Fan Base</p>
-                                            </div>
-                                        </div>
-                                        <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                        {/* Columna Derecha: Mockup Interactivo */}
+                        <div className="lg:col-span-6">
+                            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-neutral-800 bg-neutral-900/90 group">
+                                {/* Browser Bar */}
+                                <div className="bg-neutral-950 px-4 py-3 border-b border-neutral-800 flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 rounded-full bg-rose-500/80" />
+                                        <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+                                        <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
                                     </div>
+                                    <div className="text-[11px] font-mono text-neutral-400 bg-neutral-900 px-4 py-0.5 rounded-full border border-neutral-800">
+                                        system.internal/production-control
+                                    </div>
+                                    <div className="w-12" />
+                                </div>
 
-                                    <div className="space-y-3">
-                                        <div className="flex items-center justify-between p-3 rounded-xl bg-indigo-950/40 border border-indigo-900/40 text-sm">
-                                            <span className="text-neutral-300 flex items-center gap-2">
-                                                <Zap className="w-4 h-4 text-amber-400" /> Rendimiento Lighthouse
-                                            </span>
-                                            <span className="font-mono text-emerald-400 font-bold">100/100</span>
-                                        </div>
-                                        <div className="flex items-center justify-between p-3 rounded-xl bg-indigo-950/40 border border-indigo-900/40 text-sm">
-                                            <span className="text-neutral-300 flex items-center gap-2">
-                                                <Sparkles className="w-4 h-4 text-amber-400" /> Framework
-                                            </span>
-                                            <span className="font-mono text-indigo-300 font-bold">Astro SSG</span>
-                                        </div>
-                                        <div className="flex items-center justify-between p-3 rounded-xl bg-indigo-950/40 border border-indigo-900/40 text-sm">
-                                            <span className="text-neutral-300 flex items-center gap-2">
-                                                <Smartphone className="w-4 h-4 text-amber-400" /> Adaptabilidad
-                                            </span>
-                                            <span className="font-mono text-amber-300 font-bold">100% Mobile Ready</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="pt-2 text-center">
-                                        <p className="text-xs text-neutral-400">
-                                            Desplegado en producción a través de la infraestructura global de Vercel.
-                                        </p>
-                                    </div>
+                                {/* Mockup Media */}
+                                <div className="relative aspect-[16/10] overflow-hidden bg-neutral-950">
+                                    <img
+                                        src={proyecto.mockup || proyecto.imagen}
+                                        alt={proyecto.titulo}
+                                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-transparent to-transparent opacity-60" />
                                 </div>
                             </div>
                         </div>
@@ -137,54 +116,54 @@ export default function Proyecto2Detail({ proyecto }: Props) {
                 </div>
             </section>
 
-            {/* Features section */}
-            <section className="py-20 px-6 bg-[#080b1a] border-t border-indigo-900/30">
+            {/* Módulos Principales & Arquitectura */}
+            <section className="py-20 px-6 border-t border-neutral-800/60 bg-[#090d16]">
                 <div className="max-w-7xl mx-auto space-y-12">
                     <div className="text-center max-w-2xl mx-auto space-y-3">
-                        <h2 className="text-3xl font-extrabold text-white">
-                            Puntos Destacados de la Experiencia
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                            Características y Funcionalidades Clave
                         </h2>
                         <p className="text-neutral-400 text-sm sm:text-base">
-                            Construido para brindar una experiencia inmersiva a los fanáticos del fútbol mundial.
+                            Arquitectura robusta creada para entornos operativos que requieren alta disponibilidad y consistencia de datos.
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-6">
-                        <div className="p-6 rounded-2xl bg-indigo-950/20 border border-indigo-900/40 hover:border-amber-500/40 transition-colors">
-                            <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 border border-amber-500/20">
-                                <Sparkles className="w-6 h-6" />
+                        <div className="p-6 rounded-xl bg-neutral-900/60 border border-neutral-800 hover:border-cyan-500/40 transition-colors space-y-4">
+                            <div className="w-12 h-12 rounded-lg bg-cyan-950 flex items-center justify-center text-cyan-400 border border-cyan-800/40">
+                                <Database className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2">Diseño UI Interactivo</h3>
+                            <h3 className="text-xl font-bold text-white">Integración SQL Server</h3>
                             <p className="text-neutral-400 text-sm leading-relaxed">
-                                Componentes interactivos con animaciones micro-smooth construidas sobre Tailwind CSS.
+                                Consultas optimizadas y procedimientos almacenados para procesar grandes volúmenes de registros de stock e historial de lotes.
                             </p>
                         </div>
 
-                        <div className="p-6 rounded-2xl bg-indigo-950/20 border border-indigo-900/40 hover:border-amber-500/40 transition-colors">
-                            <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 border border-amber-500/20">
-                                <Zap className="w-6 h-6" />
+                        <div className="p-6 rounded-xl bg-neutral-900/60 border border-neutral-800 hover:border-cyan-500/40 transition-colors space-y-4">
+                            <div className="w-12 h-12 rounded-lg bg-cyan-950 flex items-center justify-center text-cyan-400 border border-cyan-800/40">
+                                <BarChart3 className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2">Carga Ultrarrápida con Astro</h3>
+                            <h3 className="text-xl font-bold text-white">Panel de Control de Producción</h3>
                             <p className="text-neutral-400 text-sm leading-relaxed">
-                                Generación de sitios estáticos (SSG) sin sobrecarga de JavaScript para respuestas inmediatas.
+                                Vistas analíticas centralizadas para monitorear mermas, órdenes de producción en proceso y salidas hacia despacho.
                             </p>
                         </div>
 
-                        <div className="p-6 rounded-2xl bg-indigo-950/20 border border-indigo-900/40 hover:border-amber-500/40 transition-colors">
-                            <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 border border-amber-500/20">
-                                <Globe2 className="w-6 h-6" />
+                        <div className="p-6 rounded-xl bg-neutral-900/60 border border-neutral-800 hover:border-cyan-500/40 transition-colors space-y-4">
+                            <div className="w-12 h-12 rounded-lg bg-cyan-950 flex items-center justify-center text-cyan-400 border border-cyan-800/40">
+                                <ShieldCheck className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2">Secciones Informativas</h3>
+                            <h3 className="text-xl font-bold text-white">Validación de Roles y Permisos</h3>
                             <p className="text-neutral-400 text-sm leading-relaxed">
-                                Cobertura detallada de las 16 sedes organizadoras en Canadá, Estados Unidos y México.
+                                Sistema de autenticación en Laravel con niveles de acceso estructurados para operadores, supervisores y administradores.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Stack Carousel */}
-            {/* <div className="bg-[#060813]">
+            {/* Stack Tecnológico Carrusel */}
+            {/* <div className="bg-[#07090e]">
                 <LogoCarrusel tags={stackTags} />
             </div> */}
         </div>
