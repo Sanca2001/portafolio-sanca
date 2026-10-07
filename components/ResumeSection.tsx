@@ -118,35 +118,37 @@ function LogoBox({ item }: { item: ResumeItem }) {
 
 export default function ResumeSection({ items = realResumeItems }: ResumeSectionProps) {
   return (
-    <div className="w-full mx-auto py-6 sm:py-10">
+    <div className="py-6 sm:py-10 w-full lg:w-[980px] lg:max-w-[980px] ">
       <div className="space-y-0">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
 
           return (
             <React.Fragment key={item.id}>
-              <div className="flex items-start gap-4 sm:gap-5">
+              <div className="flex items-start gap-3.5 sm:gap-5">
                 {/* Logo Icon Box */}
                 <LogoBox item={item} />
 
                 {/* Content Area */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-slate-900 font-semibold text-[15px] sm:text-[16px] leading-snug">
+                  <h3 className="text-slate-900 font-semibold text-[15px] sm:text-[16px] leading-snug break-words">
                     {item.role}{" "}
                     <span className="font-normal text-slate-500">
                       @ {item.company}
                     </span>
                   </h3>
 
-                  <p className="text-[13px] sm:text-[13.5px] text-slate-400 font-normal mt-0.5 mb-2">
-                    {item.period}{" "}
-                    <span className="inline-block mx-1.5 opacity-40">•</span>{" "}
-                    {item.location}
+                  <p className="text-[12.5px] sm:text-[13.5px] text-slate-400 font-normal mt-0.5 mb-2 flex flex-wrap items-center gap-y-0.5">
+                    <span>{item.period}</span>
+                    <span className="inline-block mx-1.5 opacity-40">•</span>
+                    <span>{item.location}</span>
                   </p>
 
-                  <p className="text-[13.5px]  w-[980] sm:text-[14px] text-slate-600 leading-relaxed font-normal">
-                    {item.description}
-                  </p>
+                  {item.description && (
+                    <p className="text-[13px] sm:text-[14px] text-slate-600 leading-relaxed font-normal w-full max-w-full break-words">
+                      {item.description}
+                    </p>
+                  )}
                 </div>
               </div>
 
