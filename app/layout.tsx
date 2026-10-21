@@ -1,38 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Noto_Sans, Playfair_Display } from "next/font/google";
+import type { ReactNode } from "react";
+import Script from "next/script";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
-const playfairDisplayHeading = Playfair_Display({subsets:['latin'],variable:'--font-heading'});
-
-const notoSans = Noto_Sans({subsets:['latin'],variable:'--font-sans'});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
-  title: "Portafolio - Enrique Sandoval",
-  description: "Portafolio de Enrique Sandoval, Desarrollador de Software",
+  title: "Portafolio Personal",
+  description: "Portafolio personal de Enrique Sandoval, Web Developer",
+  icons: { icon: "/images/logo-sanca.png" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", notoSans.variable, playfairDisplayHeading.variable)}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body>
+        {children}
+        {/* Los estilos usan <ion-icon>, por eso cargamos Ionicons como web component */}
+        <Script
+          type="module"
+          src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }
