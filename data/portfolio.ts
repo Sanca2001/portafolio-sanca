@@ -1,15 +1,47 @@
-export const categories = ["All", "Web Design", "Aplicaciones", "Desarrollo web"] as const;
+export const categories = [
+  "Todos",
+  "Desktop App",
+  "Aplicaciones",
+  "Desarrollo web",
+] as const;
 
 export type Category = (typeof categories)[number];
 
 export type Project = {
   title: string;
-  category: Exclude<Category, "All">;
+  category: Exclude<Category, "Todos">;
   image: string;
 };
 
 export const projects: Project[] = [
-  { title: "Sistema de Inventario", category: "Desarrollo web", image: "/images/projects/Sistema de Inventarios/1.jfif" },
-  { title: "Aplicación de Inventario", category: "Aplicaciones", image: "/images/projects/Aplicacion de inventarios/1.png" },
+  {
+    title: "Sistema de Inventario",
+    category: "Desarrollo web",
+    image: "/images/projects/Sistema de Inventarios/mockup 1.png",
+  },
+  {
+    title: "Aplicación de Inventario",
+    category: "Aplicaciones",
+    image: "/images/projects/Aplicacion de inventarios/1.png",
+  },
+  {
+    title: "Aplicación Gestión de Expediting y Correos",
+    category: "Desktop App",
+    image:
+      "/images/projects/Aplicación Gestión de Expediting y Correos/mockup 1.png",
+  },
 
+  {
+    title: "Aplicación web - Control de Producción",
+    category: "Desarrollo web",
+    image:
+      "/images/projects/Aplicación web - Control de Producción/mockup 1.png",
+  },
+
+  {
+    title: "Sistema de Programación de Turnos",
+    category: "Desarrollo web",
+    image:
+      "/images/projects/Sistema de Programación de Turnos/mockup 1.png",
+  },
 ];

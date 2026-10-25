@@ -5,11 +5,11 @@ import ProjectCard from "@/components/ProjectCard";
 import { categories, projects, type Category } from "@/data/portfolio";
 
 export default function Portfolio({ active }: { active: boolean }) {
-  const [category, setCategory] = useState<Category>("All");
+  const [category, setCategory] = useState<Category>("Todos");
   const [selectOpen, setSelectOpen] = useState(false);
 
   const visibleProjects =
-    category === "All"
+    category === "Todos"
       ? projects
       : projects.filter((project) => project.category === category);
 
@@ -46,7 +46,7 @@ export default function Portfolio({ active }: { active: boolean }) {
             onClick={() => setSelectOpen((prev) => !prev)}
           >
             <div className="select-value">
-              {category === "All" ? "Select Category" : category}
+              {category === "Todos" ? "Select Category" : category}
             </div>
 
             <div className="select-icon">
