@@ -967,6 +967,7 @@ article.active {
 
 .project-item {
   display: none;
+  cursor: pointer;
 }
 
 .project-item.active {
@@ -1815,4 +1816,22 @@ textarea.form-input::-webkit-resizer {
   .timeline-text {
     max-width: 700px;
   }
+}
+
+/*PORTFOLIO*/
+
+.project-links {
+  display: flex;
+  gap: 14px;
+  margin: 10px 0 0 10px;
+}
+
+.project-link {
+  color: var(--light-gray70);
+  font-size: 20px;
+  transition: color var(--transition1);
+}
+
+.project-link:hover {
+  color: var(--orange-yellow-crayola);
 }

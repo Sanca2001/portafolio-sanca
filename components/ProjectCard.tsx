@@ -1,9 +1,9 @@
 import type { Project } from "@/data/portfolio";
 
-export default function ProjectCard({ title, category, image }: Project) {
+export default function ProjectCard({ title, category, image, link }: Project) {
   return (
     <li className="project-item active">
-      <a href="#">
+      <a>
         <figure className="project-img">
           <div className="project-item-icon-box">
             <ion-icon name="eye-outline"></ion-icon>
@@ -15,6 +15,21 @@ export default function ProjectCard({ title, category, image }: Project) {
         <h3 className="project-title">{title}</h3>
         <p className="project-category">{category}</p>
       </a>
+
+      {link && (
+        <div className="project-links">
+          <a
+            href={link}
+            className="project-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Visitar sitio de ${title}`}
+            title="Visitar sitio"
+          >
+            <ion-icon name="globe-outline"></ion-icon>
+          </a>
+        </div>
+      )}
     </li>
   );
 }

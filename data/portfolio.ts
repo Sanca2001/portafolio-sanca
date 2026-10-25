@@ -11,6 +11,7 @@ export type Project = {
   title: string;
   category: Exclude<Category, "Todos">;
   image: string;
+  link?: string; // opcional: solo los proyectos con sitio web
 };
 
 export const projects: Project[] = [
@@ -41,7 +42,13 @@ export const projects: Project[] = [
   {
     title: "Sistema de Programación de Turnos",
     category: "Desarrollo web",
-    image:
-      "/images/projects/Sistema de Programación de Turnos/mockup 1.png",
+    image: "/images/projects/Sistema de Programación de Turnos/mockup 1.png",
+  },
+
+  {
+    title: "Juego Abecedario",
+    category: "Desarrollo web",
+    image: "/images/projects/Juego Abecedario/mockup 1.png",
+    link: "https://juego-abecedario.vercel.app/",
   },
 ];

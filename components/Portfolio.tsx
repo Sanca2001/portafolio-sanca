@@ -21,11 +21,10 @@ export default function Portfolio({ active }: { active: boolean }) {
   return (
     <article className={`portfolio ${active ? "active" : ""}`}>
       <header>
-        <h2 className="h2 article-title"> Portafolio </h2>
+        <h2 className="h2 article-title">Portafolio</h2>
       </header>
 
       <section className="projects">
-        {/* Filtros para pantallas grandes */}
         <ul className="filter-list">
           {categories.map((item) => (
             <li className="filter-item" key={item}>
@@ -39,14 +38,13 @@ export default function Portfolio({ active }: { active: boolean }) {
           ))}
         </ul>
 
-        {/* Select para pantallas pequeñas */}
         <div className="filter-select-box">
           <button
             className={`filter-select ${selectOpen ? "active" : ""}`}
             onClick={() => setSelectOpen((prev) => !prev)}
           >
             <div className="select-value">
-              {category === "Todos" ? "Select Category" : category}
+              {category === "Todos" ? "Seleccionar categoría" : category}
             </div>
 
             <div className="select-icon">
