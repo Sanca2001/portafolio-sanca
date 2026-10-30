@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Navbar, { type Page } from "@/components/Navbar";
 import About from "@/components/about/About";
 import Resume from "@/components/resume/Resume";
 import Portfolio from "@/components/Portfolio";
 import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
+import { useEffect, useState } from "react";
+
 
 const PAGES: Page[] = [
   { id: "about", label: "Sobre Mi" },
@@ -18,6 +19,12 @@ const PAGES: Page[] = [
 
 export default function MainContent() {
   const [activePage, setActivePage] = useState("about");
+
+
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (PAGES.some((page) => page.id === hash)) setActivePage(hash);
+  }, []);
 
   const handleChange = (id: string) => {
     setActivePage(id);

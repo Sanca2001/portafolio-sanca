@@ -1,20 +1,27 @@
+import Link from "next/link";
 import type { Project } from "@/data/portfolio";
 
-export default function ProjectCard({ title, category, image, link }: Project) {
+export default function ProjectCard({
+  slug,
+  title,
+  category,
+  images,
+  link,
+}: Project) {
   return (
     <li className="project-item active">
-      <a>
+      <Link href={`/proyectos/${slug}`}>
         <figure className="project-img">
           <div className="project-item-icon-box">
             <ion-icon name="eye-outline"></ion-icon>
           </div>
 
-          <img src={image} alt={title.toLowerCase()} loading="lazy" />
+          <img src={images[0]} alt={title.toLowerCase()} loading="lazy" />
         </figure>
 
         <h3 className="project-title">{title}</h3>
         <p className="project-category">{category}</p>
-      </a>
+      </Link>
 
       {link && (
         <div className="project-links">
