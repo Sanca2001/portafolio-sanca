@@ -9,17 +9,17 @@ export const aboutText: string[] = [
 
 export const services: Service[] = [
   {
-    icon: "https://i.postimg.cc/4389jZkP/icon-design.png",
+    icon: "icons/services/diseno-de-interfaz-de-usuario.png",
     title: "Diseño UX/UI",
     text: "Diseño interfaces modernas, intuitivas y atractivas, enfocadas en mejorar la experiencia del usuario y facilitar la interacción con aplicaciones web, móviles y de escritorio.",
   },
   {
-    icon: "https://i.postimg.cc/ZqgqrqzG/icon-dev.png",
+    icon: "icons/services/desarrollo-web.png",
     title: "Desarrollo web",
     text: "Desarrollo sitios web modernos, responsivos y funcionales, adaptados a las necesidades de cada proyecto, con enfoque en rendimiento, usabilidad y una excelente experiencia de usuario.",
   },
   {
-    icon: "https://i.postimg.cc/ZqgqrqzG/icon-dev.png",
+    icon: "/icons/services/soporte-tecnico.png",
     title: "Soporte TI",
     text: "Brindo soporte técnico para diagnosticar y resolver problemas de hardware, software y redes, realizando mantenimiento, instalación y configuración de equipos para garantizar su correcto funcionamiento.",
   },
